@@ -18,7 +18,7 @@ app.use(
 );
 
 // Routes
-app.use('/api', router);
+app.use(router);
 
 mongoose
   .connect(process.env.MONGO_URI)

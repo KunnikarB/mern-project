@@ -13,7 +13,7 @@ const ItemList = () => {
   const fetchItems = async () => {
     try {
       const response = await axios.get(
-        'https://mern-deploy-kappa.vercel.app/api/items'
+        'https://mern-deploy-kappa.vercel.app/items'
       );
       setItems(response.data);
     } catch (err) {
@@ -24,7 +24,7 @@ const ItemList = () => {
   const deleteItem = async (id: string) => {
     try {
       await axios.delete(
-        `https://mern-deploy-kappa.vercel.app/api/items/${id}`
+        `https://mern-deploy-kappa.vercel.app/items/${id}`
       );
       // Remove item from state
       setItems((prevItems) => prevItems.filter((item) => item._id !== id));
