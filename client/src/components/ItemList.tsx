@@ -26,8 +26,7 @@ const ItemList = () => {
       await axios.delete(
         `https://mern-deploy-server-rouge.vercel.app/items/${id}`
       );
-      // Remove item from state
-      setItems((prevItems) => prevItems.filter((item) => item._id !== id));
+      fetchItems();
     } catch (err) {
       console.error('Failed to delete item:', err)
     }
