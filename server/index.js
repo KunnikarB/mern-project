@@ -10,26 +10,14 @@ const app = express();
 
 app.use(express.json());
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://mern-deploy-client-psi.vercel.app/',
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error(`CORS policy: ${origin} not allowed`));
-      }
-    },
+    origin: 'https://mern-deploy-client-psi.vercel.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
 );
+
 
 // Routes
 app.use(router);
