@@ -13,7 +13,7 @@ function App() {
   const [quantity, setQuantity] = useState(1);
   const [editingItem, setEditingItem] = useState<Item | null>(null);
 
-  const BACKEND_URL = 'https://mern-deploy-server-rouge.vercel.app/items';
+  const BACKEND_URL = 'https://mern-project-server-blue.vercel.app/items';
 
   // Fetch all items
   const fetchItems = async () => {
