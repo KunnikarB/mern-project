@@ -5,6 +5,5 @@ const itemSchema = new mongoose.Schema({
   quantity: { type: Number, required: true, min: 1 },
 });
 
-const item = mongoose.model('Item', itemSchema)
-
-export default item;
+const Item = mongoose.model('Item', itemSchema);
+export default Item;
