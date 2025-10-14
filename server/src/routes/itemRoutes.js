@@ -8,10 +8,9 @@ import {
 
 const router = express.Router();
 
-// CRUD routes
-router.get('/', getAllItems); 
-router.post('/', createItem); 
-router.put('/:id', updateItemById); 
-router.delete('/:id', deleteItemById); 
+router.get('/', getAllItems);
+router.post('/', createItem);
+router.put('/:id', updateItemById);
+router.delete('/:id', deleteItemById);
 
 export default router;

@@ -1,4 +1,4 @@
-import Item from '../models/item.js';
+import Item from '../models/itemModel.js';
 
 // Get all items
 export const getAllItems = async (req, res) => {
@@ -21,7 +21,7 @@ export const createItem = async (req, res) => {
   }
 };
 
-// Update item by ID (supports full update)
+// Update item by ID
 export const updateItemById = async (req, res) => {
   try {
     const { id } = req.params;

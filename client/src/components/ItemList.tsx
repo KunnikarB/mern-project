@@ -13,7 +13,7 @@ const ItemList = () => {
   const fetchItems = async () => {
     try {
       const response = await axios.get(
-        'https://mern-deploy-server-rouge.vercel.app/items'
+        'https://mern-project-server-blue.vercel.app/items'
       );
       setItems(response.data);
     } catch (err) {
@@ -24,7 +24,7 @@ const ItemList = () => {
   const deleteItem = async (id: string) => {
     try {
       await axios.delete(
-        `https://mern-deploy-server-rouge.vercel.app/items/${id}`
+        `https://mern-project-server-blue.vercel.app/items/${id}`
       );
       fetchItems();
     } catch (err) {

@@ -11,7 +11,6 @@ function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [editingItem, setEditingItem] = useState<Item | null>(null);
 
   const BACKEND_URL = 'https://mern-project-server-blue.vercel.app/items';
 
@@ -21,11 +20,11 @@ function App() {
       const response = await axios.get(BACKEND_URL);
       setItems(response.data);
     } catch (err) {
-      console.error('❌ Failed to fetch items:', err);
+      console.error('Failed to fetch items', err);
     }
   };
 
-  // Create new item
+  // Add new item
   const createItem = async () => {
     try {
       await axios.post(BACKEND_URL, { name, quantity });
@@ -33,7 +32,17 @@ function App() {
       setQuantity(1);
       fetchItems();
     } catch (err) {
-      console.error('❌ Failed to create item:', err);
+      console.error('Failed to create item', err);
+    }
+  };
+
+  // Update item quantity
+  const updateItem = async (id: string, newQuantity: number) => {
+    try {
+      await axios.put(`${BACKEND_URL}/${id}`, { quantity: newQuantity });
+      fetchItems();
+    } catch (err) {
+      console.error('Failed to update item', err);
     }
   };
 
@@ -43,22 +52,7 @@ function App() {
       await axios.delete(`${BACKEND_URL}/${id}`);
       fetchItems();
     } catch (err) {
-      console.error('❌ Failed to delete item:', err);
-    }
-  };
-
-  // Update item
-  const updateItem = async () => {
-    if (!editingItem) return;
-    try {
-      await axios.put(`${BACKEND_URL}/${editingItem._id}`, {
-        name: editingItem.name,
-        quantity: editingItem.quantity,
-      });
-      setEditingItem(null);
-      fetchItems();
-    } catch (err) {
-      console.error('❌ Failed to update item:', err);
+      console.error('Failed to delete item', err);
     }
   };
 
@@ -67,42 +61,45 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>🛒 Item Management</h1>
+    <div>
+      <h1>Item Management</h1>
 
-      {/* Add Item Form */}
+      {/* Item Form */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           createItem();
         }}
-        style={{ marginBottom: '30px' }}
       >
         <h2>Add Item</h2>
-        <input
-          type="text"
-          placeholder="Item name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(parseInt(e.target.value))}
-          min={1}
-          required
-        />
+        <label>
+          Name:
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </label>
+
+        <label>
+          Quantity:
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(parseInt(e.target.value))}
+            required
+            min={1}
+          />
+        </label>
+
         <button type="submit">Add</button>
       </form>
 
-      {/* Items Table */}
-      <h2>Items</h2>
-      {items.length === 0 ? (
-        <p>No items found.</p>
-      ) : (
-        <table border={1} cellPadding={8}>
+      {/* Item List */}
+      <div>
+        <h2>Items</h2>
+        <table>
           <thead>
             <tr>
               <th>Name</th>
@@ -111,49 +108,27 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {items.map((item) =>
-              editingItem && editingItem._id === item._id ? (
-                <tr key={item._id}>
-                  <td>
-                    <input
-                      type="text"
-                      value={editingItem.name}
-                      onChange={(e) =>
-                        setEditingItem({ ...editingItem, name: e.target.value })
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      value={editingItem.quantity}
-                      onChange={(e) =>
-                        setEditingItem({
-                          ...editingItem,
-                          quantity: parseInt(e.target.value),
-                        })
-                      }
-                    />
-                  </td>
-                  <td>
-                    <button onClick={updateItem}>Save</button>
-                    <button onClick={() => setEditingItem(null)}>Cancel</button>
-                  </td>
-                </tr>
-              ) : (
-                <tr key={item._id}>
-                  <td>{item.name}</td>
-                  <td>{item.quantity}</td>
-                  <td>
-                    <button onClick={() => setEditingItem(item)}>Edit</button>
-                    <button onClick={() => deleteItem(item._id)}>Delete</button>
-                  </td>
-                </tr>
-              )
-            )}
+            {items.map((item) => (
+              <tr key={item._id}>
+                <td>{item.name}</td>
+                <td>
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    min={1}
+                    onChange={(e) =>
+                      updateItem(item._id, parseInt(e.target.value))
+                    }
+                  />
+                </td>
+                <td>
+                  <button onClick={() => deleteItem(item._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
-      )}
+      </div>
     </div>
   );
 }

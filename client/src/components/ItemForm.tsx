@@ -7,7 +7,7 @@ const ItemForm = () => {
 
   const createItem = async () => {
     try {
-      await axios.post('https://mern-deploy-server-rouge.vercel.app/items', {
+      await axios.post('https://mern-project-server-blue.vercel.app/items', {
         name,
         quantity,
       });
