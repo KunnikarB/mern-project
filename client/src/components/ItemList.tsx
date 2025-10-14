@@ -12,7 +12,9 @@ const ItemList = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/items');
+      const response = await axios.get(
+        'https://mern-deploy-kappa.vercel.app/api/items'
+      );
       setItems(response.data);
     } catch (err) {
       console.error('Failed to fetch items:', err)
@@ -21,7 +23,9 @@ const ItemList = () => {
 
   const deleteItem = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`);
+      await axios.delete(
+        `https://mern-deploy-kappa.vercel.app/api/items/${id}`
+      );
       // Remove item from state
       setItems((prevItems) => prevItems.filter((item) => item._id !== id));
     } catch (err) {

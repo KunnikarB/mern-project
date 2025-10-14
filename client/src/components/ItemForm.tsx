@@ -7,7 +7,10 @@ const ItemForm = () => {
 
   const createItem = async () => {
     try {
-      await axios.post('http://localhost:5000/api/items', { name, quantity });
+      await axios.post('https://mern-deploy-kappa.vercel.app/api/items', {
+        name,
+        quantity,
+      });
       alert('Item created!');
       setName('');
       setQuantity(1);
