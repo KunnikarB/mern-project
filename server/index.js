@@ -22,7 +22,10 @@ app.use(
 );
 
 app.use(express.json());
-app.use('/items', router);
+app.get('/', (req, res) => {
+  res.send('Backend is running 🚀');
+});
+app.use( router);
 
 mongoose
   .connect(process.env.MONGO_URI)
