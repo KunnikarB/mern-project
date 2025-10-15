@@ -29,10 +29,20 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Item Management</h1>
-      <ItemForm setItems={setItems} />
-      <ItemList items={items} setItems={setItems} />
+    <div className="min-h-screen flex justify-center items-center bg-pinky p-6">
+      {/* Card container */}
+      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-pink-lg p-6 flex flex-col items-center space-y-6">
+        {/* Title */}
+        <h1 className="text-4xl font-bold text-pinkyDark text-center mb-4">
+          🌸 Item Management
+        </h1>
+
+        {/* Form */}
+        <ItemForm setItems={setItems} />
+
+        {/* Item List */}
+        <ItemList items={items} setItems={setItems} />
+      </div>
     </div>
   );
 }
