@@ -2,8 +2,8 @@ import Game from '../models/Game.js';
 
 export const createGame = async (req, res) => {
   try {
-    const { name, description } = req.body;
-    const game = new Game({ name, description });
+    const { name } = req.body;
+    const game = new Game({ name });
     await game.save();
     res.status(201).json(game);
   } catch (err) {

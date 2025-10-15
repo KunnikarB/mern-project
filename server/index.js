@@ -2,11 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import router from './src/routes/itemRoutes.js';
+
 import userRoutes from './src/routes/userRoutes.js';
 import playSessionRoutes from './src/routes/playSessionRoutes.js';
 import gamesRoutes from './src/routes/gameRoutes.js';
-import authRoutes from './src/routes/authRoutes.js';
+
 
 
 dotenv.config();
@@ -31,7 +31,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Backend is running 🚀');
 });
-app.use('/auth', authRoutes);
+
 app.use('/users', userRoutes);
 app.use('/games', gamesRoutes);
 app.use('/play-sessions', playSessionRoutes);

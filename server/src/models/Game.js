@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
-const gameSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String },
-  createdAt: { type: Date, default: Date.now },
-});
+const gameSchema = new mongoose.Schema(
+  {
+    name: String,
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model('Game', gameSchema);
