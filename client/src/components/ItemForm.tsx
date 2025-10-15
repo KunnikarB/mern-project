@@ -1,19 +1,30 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { type Item } from '../App';
 
-const ItemForm = () => {
+interface Props {
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+}
+
+const ItemForm: React.FC<Props> = ({ setItems }) => {
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState(1);
 
   const createItem = async () => {
     try {
-      await axios.post('https://mern-project-server-blue.vercel.app/items', {
-        name,
-        quantity,
-      });
-      alert('Item created!');
+      const response = await axios.post(
+        'https://mern-project-server-blue.vercel.app/items',
+        {
+          name,
+          quantity,
+        }
+      );
+      // Update state immediately
+      setItems((prev) => [...prev, response.data]);
+      setName('');
+      setQuantity(1);
     } catch (err) {
-      console.error('Failed to create item', err);
+      console.error('Failed to create item:', err);
     }
   };
 
@@ -25,29 +36,25 @@ const ItemForm = () => {
       }}
     >
       <h2>Add Item</h2>
-      <label htmlFor="name">
-        Name:
-        <input
-          id="name"
-          name="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </label>
+      <label htmlFor="name">Name:</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
 
-      <label htmlFor="quantity">
-        Quantity:
-        <input
-          id="quantity"
-          name="quantity"
-          type="text"
-          value={quantity}
-          onChange={(e) => setQuantity(parseInt(e.target.value))}
-          required
-        />
-      </label>
+      <label htmlFor="quantity">Quantity:</label>
+      <input
+        id="quantity"
+        name="quantity"
+        type="number"
+        value={quantity}
+        onChange={(e) => setQuantity(parseInt(e.target.value))}
+        required
+      />
 
       <button type="submit">Add</button>
     </form>

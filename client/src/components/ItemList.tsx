@@ -1,42 +1,25 @@
-import { useState, useEffect } from "react";
 import axios from 'axios';
+import { type Item } from '../App';
 
-type Item = {
-  _id: string;
-  name: string;
-  quantity: number;
-};
+interface Props {
+  items: Item[];
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+}
 
-const ItemList = () => {
-  const [items, setItems] = useState<Item[]>([]);
-
-  const fetchItems = async () => {
-    try {
-      const response = await axios.get(
-        'https://mern-project-server-blue.vercel.app/items'
-      );
-      setItems(response.data);
-    } catch (err) {
-      console.error('Failed to fetch items:', err)
-    }
-  }
-
+const ItemList: React.FC<Props> = ({ items, setItems }) => {
   const deleteItem = async (id: string) => {
     try {
       await axios.delete(
         `https://mern-project-server-blue.vercel.app/items/${id}`
       );
-      fetchItems();
+      // Remove deleted item from state immediately
+      setItems((prev) => prev.filter((item) => item._id !== id));
     } catch (err) {
-      console.error('Failed to delete item:', err)
+      console.error('Failed to delete item:', err);
     }
-  }
+  };
 
-  useEffect(() => {
-    fetchItems()
-  }, [])
-
-  return(
+  return (
     <div>
       <h2>Items</h2>
       <table>
@@ -56,13 +39,11 @@ const ItemList = () => {
                 <button onClick={() => deleteItem(item._id)}>Delete</button>
               </td>
             </tr>
-            )
-          )}
+          ))}
         </tbody>
       </table>
     </div>
-  )
+  );
 };
 
-export default ItemList
-
+export default ItemList;
