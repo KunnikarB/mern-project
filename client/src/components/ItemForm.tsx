@@ -25,9 +25,11 @@ const ItemForm = () => {
       }}
     >
       <h2>Add Item</h2>
-      <label>
+      <label htmlFor="name">
         Name:
         <input
+          id="name"
+          name="name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -35,9 +37,11 @@ const ItemForm = () => {
         />
       </label>
 
-      <label>
+      <label htmlFor="quantity">
         Quantity:
         <input
+          id="quantity"
+          name="quantity"
           type="text"
           value={quantity}
           onChange={(e) => setQuantity(parseInt(e.target.value))}
