@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import Games from './pages/Games';
 import GameSession from './pages/GameSession';
 
+
 export default function App() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
