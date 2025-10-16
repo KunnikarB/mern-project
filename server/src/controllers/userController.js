@@ -36,3 +36,36 @@ export const getUserById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Delete user by ID
+export const deleteUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+// Update user by ID
+export const updateUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { firstName, lastName, email, profileImage } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      { firstName, lastName, email, profileImage },
+      { new: true }
+    );
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

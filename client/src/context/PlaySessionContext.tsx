@@ -14,6 +14,17 @@ import {
 } from 'chart.js';
 import { type User } from '../types';
 
+type Game = {
+  _id: string;
+  name: string;
+  // extend with other fields from your backend schema if needed
+};
+
+type PlaySession = {
+  minutesPlayed: number;
+  game: Game;
+};
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -23,23 +34,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-// Local Game type: only the fields used in this file are required.
-// This avoids importing a non-exported 'Game' from ../types.
-type Game = {
-  _id: string;
-  name: string;
-};
-
-// Local PlaySession type: only the fields used in this file are required.
-// This avoids importing a non-exported 'PlaySession' from ../types.
-type PlaySession = {
-  minutesPlayed: number;
-  game: {
-    _id: string;
-    name: string;
-  };
-};
 
 export default function Profile() {
   const { userId } = useParams<{ userId: string }>();
@@ -55,7 +49,6 @@ export default function Profile() {
     const fetchUser = async () => {
       try {
         const res = await api.get(`/users/${userId}`);
-        console.log('API response for user:', res.data); 
         setUser(res.data);
       } catch (err) {
         console.error(err);
@@ -123,7 +116,7 @@ export default function Profile() {
       {user && (
         <div className="flex items-center gap-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-4 w-full max-w-3xl">
           <img
-            src={user.profileImage || '/default-profile.png'}
+            src={user.profileImage ?? ''}
             alt={user.firstName}
             className="w-16 h-16 rounded-full object-cover"
           />
@@ -168,7 +161,9 @@ export default function Profile() {
               Choose New Player
             </button>
             <button
-              onClick={() => navigate(`/games/${user?._id}`)}
+              onClick={() => {
+                if (userId) navigate(`/games/session`);
+              }}
               className="flex-1 bg-pink-500 text-white rounded-xl px-4 py-2 hover:bg-pink-600"
             >
               Play New Game

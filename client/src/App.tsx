@@ -22,14 +22,12 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/games/:userId" element={<Games />} />{' '}
-            {/* Games page */}
-            <Route path="/games/:gameId" element={<Games />} />
+            <Route path="/games/:userId" element={<Games />} />
             <Route
               path="/games/session/:gameId/:userId"
               element={<GameSession />}
             />
-            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/profile/:userId" element={<Profile />} />
           </Routes>
         </main>
       </div>
