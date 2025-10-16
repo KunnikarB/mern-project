@@ -45,7 +45,8 @@ export default function Profile() {
         </div>
       </div>
       {/* Add other profile info here */}
-      <p>Welcome to 👤 {user.firstName}'s profile page!</p>
+      <p>Welcome to 👤 {user.firstName}'s profile</p>
+  
     </div>
   );
 }

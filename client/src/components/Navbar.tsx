@@ -1,6 +1,5 @@
 import WeatherWidget from './WeatherWidget';
 import SearchBar from './SearchBar';
-import '../index.css';
 
 export default function Navbar() {
   return (
