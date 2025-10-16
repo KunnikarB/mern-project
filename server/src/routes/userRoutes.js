@@ -1,20 +1,18 @@
 import express from 'express';
-import multer from 'multer';
-import { 
-  createUser, 
-  getAllUsers, 
+import {
+  createUser,
+  getAllUsers,
   getUserById,
   updateUserById,
-  deleteUserById
-} from '../controllers/userController.js';
+  deleteUserById,
+} from '../controllers/userController';
 
 const router = express.Router();
-const upload = multer({ storage: multer.memoryStorage() });
 
-router.post('/', upload.single('profileImage'), createUser);
+router.post('/', createUser);
 router.get('/', getAllUsers);
 router.get('/:id', getUserById);
-router.put('/:id', upload.single('profileImage'), updateUserById);
+router.put('/:id', updateUserById);
 router.delete('/:id', deleteUserById);
 
 export default router;

@@ -1,13 +1,14 @@
 import express from 'express';
 import {
   createPlaySession,
-  getPlaySessions,
-  getUserPlaySessions,
-} from '../controllers/playSessionController.js';
+  getPlaySessionsByUser,
+  getPlaySessionById,
+} from '../controllers/playSessionController';
+
 const router = express.Router();
 
 router.post('/', createPlaySession);
-router.get('/', getPlaySessions);
-router.get('/users/:id', getUserPlaySessions);
+router.get('/', getPlaySessionsByUser);
+router.get('/:id', getPlaySessionById);
 
 export default router;

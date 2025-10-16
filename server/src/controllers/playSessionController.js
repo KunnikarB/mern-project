@@ -1,72 +1,51 @@
-import PlaySession from '../models/PlaySession.js';
-import StatsDaily from '../models/StatsDaily.js';
+import prisma from '../prisma';
+import { createPlaySessionSchema } from '../schemas/playSessionSchema';
 
 export const createPlaySession = async (req, res) => {
   try {
-    const { user, game, minutesPlayed, date } = req.body;
+    const parsed = createPlaySessionSchema.parse(req.body);
 
-    // Create play session
-    const session = new PlaySession({ user, game, minutesPlayed, date });
-    await session.save();
+    const session = await prisma.playSession.create({
+      data: {
+        userId: parsed.userId,
+        gameId: parsed.gameId,
+        minutesPlayed: parsed.minutesPlayed,
+      },
+    });
 
-    // Update daily stats
-    const statsDate = date ? new Date(date) : new Date();
-    const dayStart = new Date(statsDate.setHours(0, 0, 0, 0));
-    const stats = await StatsDaily.findOneAndUpdate(
-      { user, game, date: dayStart },
-      { $inc: { minutesPlayed } },
-      { new: true, upsert: true }
-    );
-
-    res.status(201).json({ session, stats });
+    res.status(201).json(session);
   } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: 'Failed to create play session', error: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
-export const getPlaySessions = async (req, res) => {
+export const getPlaySessionsByUser = async (req, res) => {
   try {
-    const sessions = await PlaySession.find().populate('user game');
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ message: 'Missing userId' });
+
+    const sessions = await prisma.playSession.findMany({
+      where: { userId: String(userId) },
+      include: { game: true, user: true },
+      orderBy: { createdAt: 'asc' },
+    });
+
     res.json(sessions);
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: 'Failed to fetch sessions', error: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
-// controllers/playSessionController.js
-export const getUserPlaySessions = async (req, res) => {
+export const getPlaySessionById = async (req, res) => {
   try {
-    const { id } = req.params; // user id
-
-    // Aggregate minutesPlayed per game
-    const sessions = await PlaySession.aggregate([
-      { $match: { user: mongoose.Types.ObjectId(id) } },
-      {
-        $group: {
-          _id: '$game',
-          totalMinutes: { $sum: '$minutesPlayed' },
-        },
-      },
-    ]);
-
-    // Populate game names
-    const populated = await PlaySession.populate(sessions, { path: '_id', select: 'name' });
-
-    // Map to { gameName, timePlayed } in seconds
-    const result = populated.map((s) => ({
-      gameName: s._id.name,
-      timePlayed: s.totalMinutes * 60, // convert minutes to seconds
-    }));
-
-    res.json(result);
+    const { id } = req.params;
+    const session = await prisma.playSession.findUnique({
+      where: { id },
+      include: { game: true, user: true },
+    });
+    if (!session) return res.status(404).json({ message: 'Session not found' });
+    res.json(session);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Failed to fetch user play sessions', error: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
-
