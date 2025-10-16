@@ -44,7 +44,7 @@ export default function Users() {
         <h2 className="text-2xl font-bold text-pinkyDark">Users</h2>
         <button
           onClick={() => setShowForm(true)}
-          className="bg-pinkyDark text-white px-4 py-2 rounded-lg hover:bg-pink-600"
+          className="bg-pinkyDark text-white px-4 py-2 rounded-lg hover:bg-pink-400"
         >
           Add New User
         </button>
@@ -82,7 +82,7 @@ export default function Users() {
               </p>
               <button
                 onClick={() => handlePlayGame(user._id)}
-                className="mt-2 bg-pinkyDark text-white px-4 py-2 rounded-lg hover:bg-pink-600"
+                className="mt-2 bg-pinkyDark text-white px-4 py-2 rounded-lg hover:bg-pink-400"
               >
                 Play Game
               </button>

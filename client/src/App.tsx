@@ -9,10 +9,10 @@ import GameSession from './pages/GameSession';
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Navbar />
 
-      <div className="flex flex-1 pt-32">
+      <div className="flex flex-1 ">
         {/* Sidebar */}
         <Sidebar />
 
@@ -23,6 +23,7 @@ export default function App() {
             <Route path="/users" element={<Users />} />
             <Route path="/games/:userId" element={<Games />} />{' '}
             {/* Games page */}
+            <Route path="/games/:gameId" element={<Games />} />
             <Route
               path="/games/session/:gameId/:userId"
               element={<GameSession />}

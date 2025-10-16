@@ -27,7 +27,7 @@ export default function Profile() {
 
   if (loading) return <p>Loading profile...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
-  if (!user) return <p>User not found</p>;
+  if (!user) return <p>👤 User not found</p>;
 
   return (
     <div className="p-6">
@@ -45,7 +45,7 @@ export default function Profile() {
         </div>
       </div>
       {/* Add other profile info here */}
-      <p>Welcome to your profile page!</p>
+      <p>Welcome to 👤 {user.firstName}'s profile page!</p>
     </div>
   );
 }
