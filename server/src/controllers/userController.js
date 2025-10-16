@@ -1,6 +1,9 @@
 // removed TypeScript type imports from JS file
-import prisma from '../prisma';
-import { createUserSchema, updateUserSchema } from '../schemas/userSchema';
+import { PrismaClient } from '@prisma/client';
+
+import { createUserSchema, updateUserSchema } from '../schemas/userSchema.js';
+
+const prisma = new PrismaClient();
 
 export const createUser = async (req, res) => {
   try {
@@ -13,7 +16,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const getAllUsers = async (_req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany({ include: { sessions: true } });
     res.json(users);

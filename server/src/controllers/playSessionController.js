@@ -1,5 +1,8 @@
-import prisma from '../prisma';
-import { createPlaySessionSchema } from '../schemas/playSessionSchema';
+import { PrismaClient } from '@prisma/client';
+
+import { createPlaySessionSchema } from '../schemas/playSessionSchema.js';
+
+const prisma = new PrismaClient();
 
 export const createPlaySession = async (req, res) => {
   try {

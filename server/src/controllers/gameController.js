@@ -1,5 +1,7 @@
-import prisma from '../prisma';
-import { createGameSchema, updateGameSchema } from '../schemas/gameSchema';
+import { PrismaClient } from '@prisma/client';
+import { createGameSchema, updateGameSchema } from '../schemas/gameSchema.js';
+
+const prisma = new PrismaClient();
 
 export const createGame = async (req, res) => {
   try {

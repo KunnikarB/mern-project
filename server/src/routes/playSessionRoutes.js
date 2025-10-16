@@ -3,7 +3,7 @@ import {
   createPlaySession,
   getPlaySessionsByUser,
   getPlaySessionById,
-} from '../controllers/playSessionController';
+} from '../controllers/playSessionController.js';
 
 const router = express.Router();
 
