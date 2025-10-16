@@ -37,3 +37,36 @@ export const getPlaySessions = async (req, res) => {
       .json({ message: 'Failed to fetch sessions', error: err.message });
   }
 };
+
+// controllers/playSessionController.js
+export const getUserPlaySessions = async (req, res) => {
+  try {
+    const { id } = req.params; // user id
+
+    // Aggregate minutesPlayed per game
+    const sessions = await PlaySession.aggregate([
+      { $match: { user: mongoose.Types.ObjectId(id) } },
+      {
+        $group: {
+          _id: '$game',
+          totalMinutes: { $sum: '$minutesPlayed' },
+        },
+      },
+    ]);
+
+    // Populate game names
+    const populated = await PlaySession.populate(sessions, { path: '_id', select: 'name' });
+
+    // Map to { gameName, timePlayed } in seconds
+    const result = populated.map((s) => ({
+      gameName: s._id.name,
+      timePlayed: s.totalMinutes * 60, // convert minutes to seconds
+    }));
+
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch user play sessions', error: err.message });
+  }
+};
+

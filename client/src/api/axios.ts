@@ -1,6 +1,8 @@
 import axios from 'axios';
+
 const api = axios.create({
-  baseURL: 'https://mern-project-server-blue.vercel.app', // backend
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: 'http://localhost:3000', // your backend URL
+  withCredentials: false,
 });
+
 export default api;

@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
+import { type User } from '../types';
 
-export default function RegisterForm() {
+interface RegisterFormProps {
+  onSuccess?: (user: User) => void;
+}
+
+export default function RegisterForm({ onSuccess }: RegisterFormProps) {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -12,11 +17,9 @@ export default function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // 1) Register user
-      const reg = await api.post('/users', { email, firstName, lastName });
-      const user = reg.data;
+      const res = await api.post('/users', { email, firstName, lastName });
+      const user: User = res.data;
 
-      // 2) If photo chosen, upload via multipart form
       if (photo) {
         const form = new FormData();
         form.append('photo', photo);
@@ -25,17 +28,19 @@ export default function RegisterForm() {
         });
       }
 
-      // navigate to user profile page (Page-2 or Page-3)
-      navigate(`/profile/${user._id}`);
+      if (onSuccess) {
+        onSuccess(user);
+      } else {
+        navigate(`/profile/${user._id}`);
+      }
     } catch (err) {
       console.error(err);
-      alert('Could not register');
+      alert('Could not register user.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-      <h2 className="text-2xl font-semibold text-pinkyDark">Register</h2>
       <input
         placeholder="Email"
         value={email}
@@ -44,14 +49,14 @@ export default function RegisterForm() {
         required
       />
       <input
-        placeholder="First name"
+        placeholder="First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         className="input"
         required
       />
       <input
-        placeholder="Last name"
+        placeholder="Last Name"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         className="input"
@@ -62,8 +67,8 @@ export default function RegisterForm() {
         accept="image/*"
         onChange={(e) => setPhoto(e.target.files?.[0] ?? null)}
       />
-      <button className="bg-pinkyDark text-white rounded-xl px-4 py-2">
-        Register
+      <button className="bg-pinkyDark text-white rounded-xl px-4 py-2 hover:bg-pink-600">
+        Add User
       </button>
     </form>
   );

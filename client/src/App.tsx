@@ -1,43 +1,44 @@
-import WeatherWidget from './components/WeatherWidget';
-import SearchBar from './components/SearchBar';
-import RegisterForm from './components/RegisterForm';
-import ItemForm from './components/ItemForm';
-import ItemList from './components/ItemList';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Home from './pages/Home';
+import Users from './pages/Users';
+import Profile from './pages/Profile';
+import Games from './pages/Games';
+import GameSession from './pages/GameSession';
 
-import './index.css';
-
-export default function Home() {
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="container mx-auto max-w-6xl grid grid-cols-12 gap-6">
-        {/* Left: weather (col-span 3) */}
-        <div className="col-span-12 md:col-span-3">
-          <WeatherWidget />
-        </div>
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <Navbar />
 
-        {/* Center: register (col-span 6) */}
-        <div className="col-span-12 md:col-span-6 flex items-center justify-center">
-          <div className="w-full rounded-2xl p-6">
-            <RegisterForm />
-          </div>
-        </div>
+      <div className="flex flex-1 pt-32">
+        {/* Sidebar */}
+        <Sidebar />
 
-        {/* Right: item list (col-span 3) */}
-        <div className="col-span-12 md:col-span-3">
-          <ItemList items={[]} setItems={() => {}} />
-        </div>
-        {/* Below center: item form (col-span 6) */}
-        <div className="col-span-12 md:col-span-6 flex items-center justify-center">
-          <div className="w-ful rounded-2xl p-6  mt-6">
-            <ItemForm setItems={() => {}} />
-          </div>
-        </div>
-
-        {/* Right: search bar with icon (col-span 3) */}
-        <div className="col-span-12 md:col-span-3 flex items-start justify-end">
-          <SearchBar />
-        </div>
+        {/* Main content */}
+        <main className="flex-1 p-6 min-h-[calc(100vh-128px)]">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/games/:userId" element={<Games />} />{' '}
+            {/* Games page */}
+            <Route
+              path="/games/session/:gameId/:userId"
+              element={<GameSession />}
+            />
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
+        </main>
       </div>
+
+      <footer className="w-full bg-white dark:bg-gray-800 shadow-lg py-4 mt-auto">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-600 dark:text-gray-400">
+            &copy; {new Date().getFullYear()} MyApp. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
