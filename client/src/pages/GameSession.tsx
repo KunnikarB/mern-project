@@ -85,7 +85,7 @@ export default function GameSession() {
       {/* Play info after stopping */}
       {stopped && (
         <div className="bg-pink-100 dark:bg-gray-700 text-pinkyDark dark:text-white rounded-lg p-4 mb-6 w-full max-w-md text-center font-semibold shadow-md">
-          You played {seconds} seconds in {gameName}
+          You played {seconds} minutes in {gameName}
         </div>
       )}
 
