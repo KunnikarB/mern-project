@@ -2,14 +2,14 @@
   "name": "mern-project",
   "version": "1.0.0",
   "description": "MERN Project Backend",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon index.ts",
+    "start": "ts-node index.ts"
   },
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@prisma/client": "^6.17.1",
     "@prisma/extension-accelerate": "^2.0.2",
+    "@types/cors": "^2.8.19",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -28,6 +29,8 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "eslint": "^9.37.0",
+    "install": "^0.13.0",
     "nodemon": "^3.1.10",
     "prisma": "^6.17.1",
     "ts-node": "^10.9.2"
