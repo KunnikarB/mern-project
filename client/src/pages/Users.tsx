@@ -76,13 +76,17 @@ export default function Users() {
                   </span>
                 )}
               </div>
-
-              <p className="font-semibold text-gray-800 dark:text-gray-200 text-center">
-                {user.firstName} {user.lastName}
-              </p>
-              <button onClick={() => navigate(`/profile/${user.id}`)} className="text-pink-400 hover:underline">
-                View
-              </button>
+              <div className='flex flex-row items-center gap-4'>
+                <p className="font-semibold text-gray-800 dark:text-gray-200 text-center">
+                  {user.firstName} {user.lastName}
+                </p>
+                <button
+                  onClick={() => navigate(`/profile/${user.id}`)}
+                  className="text-pink-400 font-bold hover:underline"
+                >
+                  View
+                </button>
+              </div>
               <p className="text-gray-500 dark:text-gray-400 text-sm text-center">
                 {user.email}
               </p>
