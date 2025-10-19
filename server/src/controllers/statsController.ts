@@ -62,14 +62,25 @@ export const userPerDay = async (req: Request, res: Response) => {
       },
     });
 
-    // Group by user and day
+    // Fetch all users to map IDs to names
+    const users = await prisma.user.findMany({
+      select: { id: true, firstName: true, lastName: true },
+    });
+    const userMap: Record<number, string> = {};
+    users.forEach((u) => {
+      userMap[u.id] = `${u.firstName} ${u.lastName}`;
+    });
+
+    // Group by user name playtime per day
     const stats: Record<string, Record<string, number>> = {};
 
-    sessions.forEach((s) => {
-      const day = s.createdAt.toISOString().split('T')[0]; // YYYY-MM-DD
-      if (!stats[s.userId]) stats[s.userId] = {};
-      if (!stats[s.userId][day]) stats[s.userId][day] = 0;
-      stats[s.userId][day] += s.minutesPlayed;
+    sessions.forEach((session) => {
+      const date = session.createdAt.toISOString().split('T')[0]; // YYYY-MM-DD
+      const userName = userMap[session.userId] || `User ${session.userId}`;
+
+      if (!stats[date]) stats[date] = {};
+      if (!stats[date][userName]) stats[date][userName] = 0;
+      stats[date][userName] += session.minutesPlayed;
     });
 
     return res.json(stats);
@@ -79,6 +90,7 @@ export const userPerDay = async (req: Request, res: Response) => {
       .json({ error: error instanceof Error ? error.message : error });
   }
 };
+
 
 // 🏆 Leaderboard: top user per game (SQL-optimized)
 export const leaderboard = async (req: Request, res: Response) => {

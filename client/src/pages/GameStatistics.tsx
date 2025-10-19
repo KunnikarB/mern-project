@@ -1,23 +1,56 @@
+import { useEffect, useState } from 'react';
 import 'chart.js/auto';
-import { Bar, Doughnut, Line } from 'react-chartjs-2';
-import revenueData from '../data/usersPlayPerDay.json';
+import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import leaderboardData from '../data/leaderboard.json';
 import { defaults } from 'chart.js/auto';
+import api from '../api/axios';
 
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
-defaults.plugins.title.display = true;
-defaults.plugins.title.align = 'center';
-defaults.plugins.title.color = 'Pink';
+
+type UserPerDayData = Record<string, Record<string, number>>;
 
 export default function GameStatistics() {
+  const [userPerDay, setUserPerDay] = useState<UserPerDayData>({});
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchUserPerDay = async () => {
+      try {
+        const res = await api.get('/stats/user-per-day');
+        setUserPerDay(res.data);
+      } catch (err) {
+        console.error('Failed to fetch user per day data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUserPerDay();
+  }, []);
+
+  if (loading) return <p>Loading statistics...</p>;
+
+  const dates = Object.keys(userPerDay).sort();
+  const users = Array.from(
+    new Set(dates.flatMap((date) => Object.keys(userPerDay[date])))
+  );
+
+  // Prepare datasets for stacked Line chart
+  const datasets = users.map((user, idx) => ({
+    label: user,
+    data: dates.map((date) => userPerDay[date][user] || 0),
+    borderColor: `hsl(${(idx * 60) % 360}, 70%, 50%)`,
+    backgroundColor: `hsla(${(idx * 60) % 360}, 70%, 50%, 0.3)`,
+    fill: true,
+    tension: 0.3,
+  }));
+
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold text-center mb-6 text-pink-500">
+      <h1 className="text-3xl font-bold text-center mb-6 text-pink-400">
         Game Statistics
       </h1>
 
-      {/* Grid Layout: 2x2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Doughnut Chart */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80">
@@ -48,43 +81,39 @@ export default function GameStatistics() {
               plugins: {
                 title: {
                   display: true,
-                  text: 'Overall Playtime Distribution',
-                  color: 'Pink',
+                  text: 'Time Played',
+                  color: '#FC64B6',
                   font: { size: 18 },
+                  position: 'bottom',
                 },
               },
             }}
           />
         </div>
 
-        {/* Line Chart */}
+        {/* Stacked Line Chart: User Playtime Per Day */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80">
           <Line
             data={{
-              labels: revenueData.map((data) => data.day),
-              datasets: [
-                {
-                  label: 'Revenue',
-                  data: revenueData.map((data) => data.revenue),
-                  backgroundColor: '#4bc0c0',
-                  borderColor: '#4bc0c0',
-                },
-                {
-                  label: 'Cost',
-                  data: revenueData.map((data) => data.cost),
-                  backgroundColor: '#ff6384',
-                  borderColor: '#ff6384',
-                },
-              ],
+              labels: dates,
+              datasets,
             }}
             options={{
+              responsive: true,
+              elements: { line: { tension: 0.3 } },
               plugins: {
                 title: {
                   display: true,
-                  text: 'Revenue and Cost Trends',
-                  color: 'Pink',
+                  text: 'User Playtime Per Day (Stacked)',
+                  color: '#FC64B6',
                   font: { size: 18 },
                 },
+                tooltip: { mode: 'index', intersect: false },
+              },
+              interaction: { mode: 'nearest', axis: 'x', intersect: false },
+              scales: {
+                x: { stacked: true },
+                y: { stacked: true, beginAtZero: true },
               },
             }}
           />
@@ -114,7 +143,7 @@ export default function GameStatistics() {
                 title: {
                   display: true,
                   text: 'Games Played Overview',
-                  color: 'Pink',
+                  color: '#FC64B6',
                   font: { size: 18 },
                 },
               },
@@ -124,11 +153,11 @@ export default function GameStatistics() {
 
         {/* Leaderboard Table */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md overflow-x-auto">
-          <h2 className="text-xl font-semibold text-pink-500 mb-3">
-            Global Leaderboard
+          <h2 className="text-xl font-semibold text-pink-400 mb-3 text-center">
+            Leaderboard
           </h2>
           <table className="min-w-full border border-gray-300 text-sm text-gray-800 dark:text-gray-100">
-            <thead className="bg-pink-100 dark:bg-pink-900 text-left">
+            <thead className="bg-pink-400 text-left">
               <tr>
                 <th className="py-2 px-4 border">User</th>
                 <th className="py-2 px-4 border">Game</th>

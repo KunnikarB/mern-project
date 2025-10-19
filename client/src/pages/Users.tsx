@@ -28,6 +28,8 @@ export default function Users() {
     fetchUsers();
   }, []);
 
+  
+
   const handleUserAdded = (newUser: User) => {
     setUsers((prev) => [newUser, ...prev]);
     setShowForm(false);
@@ -74,9 +76,13 @@ export default function Users() {
                   </span>
                 )}
               </div>
+
               <p className="font-semibold text-gray-800 dark:text-gray-200 text-center">
                 {user.firstName} {user.lastName}
               </p>
+              <button onClick={() => navigate(`/profile/${user.id}`)} className="text-pink-400 hover:underline">
+                View
+              </button>
               <p className="text-gray-500 dark:text-gray-400 text-sm text-center">
                 {user.email}
               </p>

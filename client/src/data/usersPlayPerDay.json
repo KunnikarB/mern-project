@@ -1,37 +1,47 @@
 [
   {
     "day": "Monday",
-    "revenue": 1500,
-    "cost": 800
+    "user": "David Williams",
+    "totalMinutes": 180
   },
   {
     "day": "Tuesday",
-    "revenue": 2000,
-    "cost": 900
+    "user": "Eve Davis",
+    "totalMinutes": 250
   },
   {
     "day": "Wednesday",
-    "revenue": 2500,
-    "cost": 1000
+    "user": "Shahid Manzoor",
+    "totalMinutes": 480
   },
   {
     "day": "Thursday",
-    "revenue": 3000,
-    "cost": 1100
+    "user": "Grace Wilson",
+    "totalMinutes": 260
   },
   {
     "day": "Friday",
-    "revenue": 3500,
-    "cost": 1200
+    "user": "Hannah Moore",
+    "totalMinutes": 210
   },
   {
     "day": "Saturday",
-    "revenue": 4000,
-    "cost": 1300
+    "user": "Charlie Brown",
+    "totalMinutes": 270
   },
   {
     "day": "Sunday",
-    "revenue": 4500,
-    "cost": 1400
+    "user": "Israt Erin",
+    "totalMinutes": 335
+  },
+  {
+    "day": "Monday",
+    "user": "Frank Miller",
+    "totalMinutes": 280
+  },
+  {
+    "day": "Monday",
+    "user": "Kunnikar Boonbunlu",
+    "totalMinutes": 320
   }
 ]
