@@ -4,6 +4,7 @@ export default function Sidebar() {
   const location = useLocation();
 
   const navItems = [
+    { path: '/', label: '🏠 Home' },
     { path: '/users', label: '👥 Users' },
     { path: '/statistics', label: '📊 Game Statistics' },
   ];
@@ -18,6 +19,7 @@ export default function Sidebar() {
         {navItems.map((item) => {
           const isActive = location.pathname.startsWith(item.path);
           return (
+
             <Link
               key={item.path}
               to={item.path}
