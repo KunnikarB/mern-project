@@ -14,23 +14,33 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+// GET /users/:id
+export const getUserById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch user' });
+  }
+};
+
 // POST /users
 export const createUser = async (req: Request, res: Response) => {
+  console.log('Incoming body:', req.body); // <--- add this
   try {
     const validated = userSchema.parse(req.body);
-
     const profileImage = `https://api.dicebear.com/9.x/lorelei/svg?seed=${encodeURIComponent(
       validated.email
     )}`;
-
-    // Create user with the generated image
     const user = await prisma.user.create({
-      data: {
-        ...validated,
-        profileImage,
-      },
+      data: { ...validated, profileImage },
     });
-
     res.status(201).json(user);
   } catch (error) {
     console.error('Error creating user:', error);
@@ -39,6 +49,7 @@ export const createUser = async (req: Request, res: Response) => {
       .json({ error: error instanceof Error ? error.message : error });
   }
 };
+
 
 // PUT /users/:id
 export const updateUser = async (req: Request, res: Response) => {

@@ -4,24 +4,24 @@ import api from '../api/axios';
 import { type User } from '../types';
 
 export default function GameSession() {
-  const { userId } = useParams<{ userId: string }>();
+  const { userId, gameId } = useParams<{ userId: string; gameId: string }>();
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [user, setUser] = useState<User | null>(null);
-  const gameName = location.state?.gameName || '';
-  const gameId = location.state?.gameId; // get game ID from state
   const [seconds, setSeconds] = useState(0);
   const [stopped, setStopped] = useState(false);
-  const navigate = useNavigate();
+  const gameName = location.state?.gameName || '';
 
   // Fetch user info
   useEffect(() => {
+    if (!userId) return;
     const fetchUser = async () => {
-      if (!userId) return;
       try {
         const res = await api.get(`/users/${userId}`);
         setUser(res.data);
       } catch (err) {
-        console.error(err);
+        console.error('Failed to fetch user:', err);
       }
     };
     fetchUser();
@@ -29,36 +29,36 @@ export default function GameSession() {
 
   // Timer
   useEffect(() => {
-    if (stopped) return; // stop timer
+    if (stopped) return;
     const interval = setInterval(() => setSeconds((prev) => prev + 1), 1000);
     return () => clearInterval(interval);
   }, [stopped]);
 
+  // Handle stop
   const handleStop = async () => {
     setStopped(true);
 
-    // Save to backend
     try {
       if (userId && gameId) {
         await api.post('/play-sessions', {
-          user: userId,
-          game: gameId,
+          userId,
+          gameId,
           minutesPlayed: Math.floor(seconds / 60),
+          secondsPlayed: seconds,
           date: new Date(),
         });
-        console.log('Play session saved!');
-      } else {
-        console.error('Missing userId or gameId');
+        console.log('Play session saved successfully');
       }
+
+      // Navigate AFTER successful save
+      navigate(`/profile/${userId}`);
     } catch (err) {
       console.error('Failed to save session:', err);
+      // Still navigate to profile even if save fails
+      navigate(`/profile/${userId}`);
     }
-
-    // Navigate to profile after 1 second so user sees the message
-    setTimeout(() => {
-      if (userId) navigate(`/profile/${userId}`);
-    }, 2000);
   };
+
 
   const formatTime = (s: number) => {
     const min = Math.floor(s / 60);
@@ -82,13 +82,6 @@ export default function GameSession() {
         </button>
       </div>
 
-      {/* Play info after stopping */}
-      {stopped && (
-        <div className="bg-pink-100 dark:bg-gray-700 text-pinkyDark dark:text-white rounded-lg p-4 mb-6 w-full max-w-md text-center font-semibold shadow-md">
-          You played {seconds} minutes in {gameName}
-        </div>
-      )}
-
       {/* User info */}
       {user && (
         <div className="fixed bottom-6 right-6 flex items-center gap-2 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-3">
@@ -97,7 +90,7 @@ export default function GameSession() {
             alt={user.firstName}
             className="w-12 h-12 rounded-full object-cover"
           />
-          <p className="font-semibold text-gray-800 dark:text-gray-200">
+          <p className="font-semibold text-white">
             {user.firstName} {user.lastName}
           </p>
         </div>

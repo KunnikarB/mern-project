@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api/axios';
 
 type Game = {
-  _id: string;
+  id: string;
   name: string;
 };
 
@@ -42,8 +42,8 @@ export default function Games() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {games.map((game) => (
           <button
-            key={game._id}
-            onClick={() => handleSelectGame(game._id, game.name)}
+            key={game.id}
+            onClick={() => handleSelectGame(game.id, game.name)}
             className="bg-white dark:bg-gray-800 shadow rounded-xl p-6 text-center hover:bg-pink-100 dark:hover:bg-gray-700 transition"
           >
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">

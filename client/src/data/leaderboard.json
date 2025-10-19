@@ -1,0 +1,22 @@
+[
+  {
+    "user": "Charlie Brown",
+    "game": "Tetris",
+    "timePlayed": "1 hours 30 minutes"
+  },
+  {
+    "user": "Israt Erin",
+    "game": "Tic-Tac-Toe",
+    "timePlayed": "4 hours 5 minutes"
+  },
+  {
+    "user": "Shahid Manzoor",
+    "game": "Sudoku",
+    "timePlayed": "5 hours 50 minutes"
+  },
+  {
+    "user": "Kunnikar Boonbunlu",
+    "game": "Chess",
+    "timePlayed": "2 hours 0 minutes"
+  }
+]

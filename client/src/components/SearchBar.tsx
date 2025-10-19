@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
 
 type UserPreview = {
-  _id: string;
+  id: string;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -82,7 +82,7 @@ export default function SearchBar({
       onSelect(user);
     } else {
       // default behaviour: navigate to profile page (Page-2 /profile/:id)
-      navigate(`/profile/${user._id}`);
+      navigate(`/profile/${user.id}`);
     }
   };
 
@@ -146,7 +146,7 @@ export default function SearchBar({
           <ul className="divide-y">
             {results.map((u) => (
               <li
-                key={u._id}
+                key={u.id}
                 onClick={() => handleSelect(u)}
                 className="flex items-center gap-3 px-4 py-3 hover:bg-pinky/30 cursor-pointer"
               >

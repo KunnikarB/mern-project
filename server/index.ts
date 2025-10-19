@@ -15,5 +15,6 @@ app.use('/games', gameRoutes);
 app.use('/stats', statsRoutes);
 app.use('/sessions', playSessionRoutes);
 
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

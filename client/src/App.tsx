@@ -6,6 +6,8 @@ import Users from './pages/Users';
 import Profile from './pages/Profile';
 import Games from './pages/Games';
 import GameSession from './pages/GameSession';
+import GameStatistics from './pages/GameStatistics';
+import { Toaster } from 'react-hot-toast';
 
 
 export default function App() {
@@ -19,6 +21,7 @@ export default function App() {
 
         {/* Main content */}
         <main className="flex-1 p-6 min-h-[calc(100vh-128px)]">
+          <Toaster position="top-right" reverseOrder={false} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
@@ -28,6 +31,7 @@ export default function App() {
               element={<GameSession />}
             />
             <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/statistics" element={<GameStatistics />} />
           </Routes>
         </main>
       </div>

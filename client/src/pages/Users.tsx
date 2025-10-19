@@ -58,7 +58,7 @@ export default function Users() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {users.map((user) => (
             <div
-              key={user._id}
+              key={user.email}
               className="bg-white dark:bg-gray-800 shadow rounded-xl p-4 flex flex-col items-center gap-4"
             >
               <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
@@ -81,7 +81,7 @@ export default function Users() {
                 {user.email}
               </p>
               <button
-                onClick={() => handlePlayGame(user._id)}
+                onClick={() => handlePlayGame(user.id)}
                 className="mt-2 bg-pinkyDark text-white px-4 py-2 rounded-lg hover:bg-pink-400"
               >
                 Play Game

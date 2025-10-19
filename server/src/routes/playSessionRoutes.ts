@@ -1,16 +1,14 @@
-import { Router } from 'express';
+import express from 'express';
 import {
-  getPlaySessions,
   createPlaySession,
-  updatePlaySession,
-  deletePlaySession,
+  getAllPlaySessions,
+  getUserStats,
 } from '../controllers/playSessionController.ts';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/', getPlaySessions);
 router.post('/', createPlaySession);
-router.put('/:id', updatePlaySession);
-router.delete('/:id', deletePlaySession);
+router.get('/', getAllPlaySessions);
+router.get('/:userId', getUserStats);
 
 export default router;

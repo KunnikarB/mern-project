@@ -55,45 +55,65 @@ export const gameTotals = async (req: Request, res: Response) => {
 export const userPerDay = async (req: Request, res: Response) => {
   try {
     const sessions = await prisma.playSession.findMany({
-      include: { user: true },
+      select: {
+        userId: true,
+        minutesPlayed: true,
+        createdAt: true,
+      },
     });
 
-    const dailyTotals = sessions.reduce((acc, s) => {
-      const date = s.createdAt.toISOString().split('T')[0];
-      const key = `${s.userId}-${date}`;
-      acc[key] = (acc[key] || 0) + s.minutesPlayed;
-      return acc;
-    }, {} as Record<string, number>);
+    // Group by user and day
+    const stats: Record<string, Record<string, number>> = {};
 
-    const results = Object.entries(dailyTotals).map(([key, total]) => {
-      const [userId, date] = key.split('-');
-      return { userId: Number(userId), date, totalMinutes: total };
+    sessions.forEach((s) => {
+      const day = s.createdAt.toISOString().split('T')[0]; // YYYY-MM-DD
+      if (!stats[s.userId]) stats[s.userId] = {};
+      if (!stats[s.userId][day]) stats[s.userId][day] = 0;
+      stats[s.userId][day] += s.minutesPlayed;
     });
 
-    res.json(results);
+    return res.json(stats);
   } catch (error) {
-    res.status(500).json({ error });
+    return res
+      .status(500)
+      .json({ error: error instanceof Error ? error.message : error });
   }
 };
 
-// 🏆 Leaderboard: user, game, time played
+// 🏆 Leaderboard: top user per game (SQL-optimized)
 export const leaderboard = async (req: Request, res: Response) => {
   try {
-    const sessions = await prisma.playSession.findMany({
-      include: { user: true, game: true },
-      orderBy: { minutesPlayed: 'desc' },
+    // Step 1: Get max minutesPlayed per game
+    const maxByGame = await prisma.playSession.groupBy({
+      by: ['gameId'],
+      _max: { minutesPlayed: true },
     });
 
-    const results = sessions.map((s) => ({
-      user: `${s.user.firstName} ${s.user.lastName}`,
-      game: s.game.name,
-      timePlayed: `${Math.floor(s.minutesPlayed / 60)} hours ${
-        s.minutesPlayed % 60
-      } minutes`,
-    }));
+    // Step 2: Find the user(s) who achieved that max per game
+    const results = await Promise.all(
+      maxByGame.map(async (record) => {
+        const topSession = await prisma.playSession.findFirst({
+          where: {
+            gameId: record.gameId,
+            minutesPlayed: record._max.minutesPlayed ?? 0,
+          },
+          include: { user: true, game: true },
+        });
+
+        return {
+          user: `${topSession?.user.firstName} ${topSession?.user.lastName}`,
+          game: topSession?.game.name,
+          timePlayed: `${Math.floor((topSession?.minutesPlayed ?? 0) / 60)} hours ${
+            (topSession?.minutesPlayed ?? 0) % 60
+          } minutes`,
+        };
+      })
+    );
 
     res.json(results);
   } catch (error) {
-    res.status(500).json({ error });
+    console.error(error);
+    res.status(500).json({ error: error instanceof Error ? error.message : error });
   }
 };
+
