@@ -71,7 +71,7 @@ export default function Profile() {
       }
     };
     fetchSessions();
-  }, [userId]);
+  }, [userId, location.key]);
 
   if (loading)
     return <p className="text-center text-gray-500">Loading profile...</p>;
@@ -79,7 +79,19 @@ export default function Profile() {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   // Merge recent session into sessions for chart
-  const allSessions = recentSession ? [recentSession, ...sessions] : sessions;
+  const allSessions = recentSession
+    ? [
+        {
+          ...recentSession,
+          game: recentSession.game ?? {
+            id: recentSession.gameId,
+            name: `Game ${recentSession.gameId}`,
+          },
+        },
+        ...sessions,
+      ]
+    : sessions;
+
 
   const totalMinutes = allSessions.reduce((sum, s) => sum + s.minutesPlayed, 0);
 

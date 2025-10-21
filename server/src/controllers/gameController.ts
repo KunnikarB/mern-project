@@ -7,7 +7,9 @@ const prisma = new PrismaClient();
 // GET /games
 export const getGames = async (req: Request, res: Response) => {
   try {
-    const games = await prisma.game.findMany();
+    const games = await prisma.game.findMany({
+      orderBy: { id: 'asc' },
+    });
     res.json(games);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch games' });

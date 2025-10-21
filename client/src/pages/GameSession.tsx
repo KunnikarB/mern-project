@@ -40,26 +40,37 @@ export default function GameSession() {
 
     try {
       if (userId && gameId) {
-        await api.post(`/sessions`, {
-          userId,
-          gameId,
-          minutesPlayed: Math.floor(seconds / 60),
-          secondsPlayed: seconds,
-          date: new Date(),
+        const now = new Date();
+
+        // Calculate start and end time
+        const startedAt = new Date(now.getTime() - seconds * 1000);
+        const endedAt = now;
+
+        // ✅ Store the API response
+        const res = await api.post(`/sessions`, {
+          userId: Number(userId),
+          gameId: Number(gameId),
+          startedAt,
+          endedAt,
         });
+
         console.log('Play session saved successfully');
+
+        // ✅ Navigate with recent session + toast trigger
+        navigate(`/profile/${userId}`, {
+          state: {
+            recentSession: res.data.session,
+            showToast: true,
+          },
+        });
+      } else {
+        navigate(`/profile/${userId}`);
       }
-
-      // Navigate AFTER successful save
-      navigate(`/profile/${userId}`);
-
     } catch (err) {
       console.error('Failed to save session:', err);
-      // Still navigate to profile even if save fails
       navigate(`/profile/${userId}`);
     }
   };
-
 
   const formatTime = (s: number) => {
     const min = Math.floor(s / 60);

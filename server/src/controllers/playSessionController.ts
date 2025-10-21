@@ -74,7 +74,7 @@ export const createPlaySession = async (req: Request, res: Response) => {
 };
 
 // ✅ GET all sessions
-export const getAllPlaySessions = async (_req: Request, res: Response) => {
+export const getAllPlaySessions = async (req: Request, res: Response) => {
   try {
     const sessions = await prisma.playSession.findMany({
       include: { user: true, game: true },
@@ -109,6 +109,64 @@ export const getUserStats = async (req: Request, res: Response) => {
     return res.status(500).json({
       error:
         error instanceof Error ? error.message : 'Failed to fetch user stats',
+    });
+  }
+};
+
+// ✅ DELETE play session by id
+export const deletePlaySession = async (req: Request, res: Response) => {
+  const sessionIdParam = req.params.id;
+  const sessionId = parseInt(sessionIdParam, 10);
+
+  if (Number.isNaN(sessionId)) {
+    return res.status(400).json({ error: 'Invalid session id' });
+  }
+
+  try {
+    // Find the session first
+    const session = await prisma.playSession.findUnique({
+      where: { id: sessionId },
+    });
+
+    if (!session) {
+      return res.status(404).json({ error: 'Play session not found' });
+    }
+
+    const { userId, gameId, minutesPlayed, createdAt } = session;
+
+    // Delete the session
+    await prisma.playSession.delete({
+      where: { id: sessionId },
+    });
+
+    // Update user total
+    await prisma.user.update({
+      where: { id: userId },
+      data: { totalMinutesPlayed: { decrement: minutesPlayed } },
+    });
+
+    // Update game total
+    await prisma.game.update({
+      where: { id: gameId },
+      data: { totalMinutesPlayed: { decrement: minutesPlayed } },
+    });
+
+    // Update daily stats
+    const day = normalizeDate(createdAt);
+    await prisma.userStats.updateMany({
+      where: { userId, date: day },
+      data: { minutesPlayed: { decrement: minutesPlayed } },
+    });
+
+    return res.json({
+      message: 'Play session deleted successfully',
+      sessionId,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error:
+        error instanceof Error ? error.message : 'Failed to delete play session',
     });
   }
 };
