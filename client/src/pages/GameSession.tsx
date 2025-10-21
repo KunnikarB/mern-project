@@ -56,11 +56,10 @@ export default function GameSession() {
 
         console.log('Play session saved successfully');
 
-        // ✅ Navigate with recent session + toast trigger
+        // ✅ Navigate with recent session
         navigate(`/profile/${userId}`, {
           state: {
             recentSession: res.data.session,
-            showToast: true,
           },
         });
       } else {
