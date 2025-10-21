@@ -40,7 +40,7 @@ export default function GameSession() {
 
     try {
       if (userId && gameId) {
-        await api.post('/play-sessions', {
+        await api.post(`/sessions`, {
           userId,
           gameId,
           minutesPlayed: Math.floor(seconds / 60),
@@ -52,6 +52,7 @@ export default function GameSession() {
 
       // Navigate AFTER successful save
       navigate(`/profile/${userId}`);
+
     } catch (err) {
       console.error('Failed to save session:', err);
       // Still navigate to profile even if save fails
