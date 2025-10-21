@@ -1,0 +1,677 @@
+[
+  {
+    "id": 53,
+    "userId": 34,
+    "gameId": 17,
+    "minutesPlayed": 50,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 34,
+      "firstName": "Shahid",
+      "lastName": "Manzoor",
+      "email": "shahid@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=shahid%40gmail.com",
+      "totalMinutesPlayed": 480,
+      "createdAt": "2025-10-19T12:34:39.423Z",
+      "updatedAt": "2025-10-19T12:34:43.469Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 62,
+    "userId": 37,
+    "gameId": 17,
+    "minutesPlayed": 50,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 37,
+      "firstName": "Eve",
+      "lastName": "Davis",
+      "email": "eve@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=eve%40gmail.com",
+      "totalMinutesPlayed": 250,
+      "createdAt": "2025-10-19T12:34:39.449Z",
+      "updatedAt": "2025-10-19T12:34:47.990Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 57,
+    "userId": 36,
+    "gameId": 17,
+    "minutesPlayed": 50,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 36,
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "email": "charlie@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=charlie%40gmail.com",
+      "totalMinutesPlayed": 270,
+      "createdAt": "2025-10-19T12:34:39.444Z",
+      "updatedAt": "2025-10-19T12:34:45.446Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 69,
+    "userId": 35,
+    "gameId": 17,
+    "minutesPlayed": 60,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 35,
+      "firstName": "Grace",
+      "lastName": "Wilson",
+      "email": "grace@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=grace%40gmail.com",
+      "totalMinutesPlayed": 260,
+      "createdAt": "2025-10-19T12:34:39.429Z",
+      "updatedAt": "2025-10-19T12:34:51.468Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 50,
+    "userId": 41,
+    "gameId": 17,
+    "minutesPlayed": 245,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 41,
+      "firstName": "Israt",
+      "lastName": "Erin",
+      "email": "israt@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=israt%40gmail.com",
+      "totalMinutesPlayed": 335,
+      "createdAt": "2025-10-19T12:34:39.536Z",
+      "updatedAt": "2025-10-19T12:34:42.002Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 66,
+    "userId": 38,
+    "gameId": 17,
+    "minutesPlayed": 40,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 38,
+      "firstName": "Frank",
+      "lastName": "Miller",
+      "email": "frank@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=frank%40gmail.com",
+      "totalMinutesPlayed": 280,
+      "createdAt": "2025-10-19T12:34:39.430Z",
+      "updatedAt": "2025-10-19T12:34:50.008Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 72,
+    "userId": 39,
+    "gameId": 17,
+    "minutesPlayed": 50,
+    "createdAt": "2025-10-13T10:00:00.000Z",
+    "updatedAt": "2025-10-13T10:00:00.000Z",
+    "user": {
+      "id": 39,
+      "firstName": "Hannah",
+      "lastName": "Moore",
+      "email": "hannah@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=hannah%40gmail.com",
+      "totalMinutesPlayed": 210,
+      "createdAt": "2025-10-19T12:34:39.429Z",
+      "updatedAt": "2025-10-19T12:34:52.941Z"
+    },
+    "game": {
+      "id": 17,
+      "name": "Tic-Tac-Toe",
+      "totalMinutesPlayed": 545,
+      "createdAt": "2025-10-19T12:34:39.630Z",
+      "updatedAt": "2025-10-19T12:34:53.020Z"
+    }
+  },
+  {
+    "id": 59,
+    "userId": 40,
+    "gameId": 15,
+    "minutesPlayed": 70,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 40,
+      "firstName": "David",
+      "lastName": "Williams",
+      "email": "david@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=david%40gmail.com",
+      "totalMinutesPlayed": 180,
+      "createdAt": "2025-10-19T12:34:39.531Z",
+      "updatedAt": "2025-10-19T12:34:46.506Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 48,
+    "userId": 33,
+    "gameId": 15,
+    "minutesPlayed": 60,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 33,
+      "firstName": "Kunnikar",
+      "lastName": "Boonbunlu",
+      "email": "kunnikar@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=kunnikar%40gmail.com",
+      "totalMinutesPlayed": 320,
+      "createdAt": "2025-10-19T12:34:39.397Z",
+      "updatedAt": "2025-10-19T12:34:41.025Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 52,
+    "userId": 34,
+    "gameId": 15,
+    "minutesPlayed": 80,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 34,
+      "firstName": "Shahid",
+      "lastName": "Manzoor",
+      "email": "shahid@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=shahid%40gmail.com",
+      "totalMinutesPlayed": 480,
+      "createdAt": "2025-10-19T12:34:39.423Z",
+      "updatedAt": "2025-10-19T12:34:43.469Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 56,
+    "userId": 36,
+    "gameId": 15,
+    "minutesPlayed": 90,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 36,
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "email": "charlie@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=charlie%40gmail.com",
+      "totalMinutesPlayed": 270,
+      "createdAt": "2025-10-19T12:34:39.444Z",
+      "updatedAt": "2025-10-19T12:34:45.446Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 61,
+    "userId": 37,
+    "gameId": 15,
+    "minutesPlayed": 70,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 37,
+      "firstName": "Eve",
+      "lastName": "Davis",
+      "email": "eve@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=eve%40gmail.com",
+      "totalMinutesPlayed": 250,
+      "createdAt": "2025-10-19T12:34:39.449Z",
+      "updatedAt": "2025-10-19T12:34:47.990Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 65,
+    "userId": 38,
+    "gameId": 15,
+    "minutesPlayed": 60,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 38,
+      "firstName": "Frank",
+      "lastName": "Miller",
+      "email": "frank@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=frank%40gmail.com",
+      "totalMinutesPlayed": 280,
+      "createdAt": "2025-10-19T12:34:39.430Z",
+      "updatedAt": "2025-10-19T12:34:50.008Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 68,
+    "userId": 35,
+    "gameId": 15,
+    "minutesPlayed": 80,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 35,
+      "firstName": "Grace",
+      "lastName": "Wilson",
+      "email": "grace@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=grace%40gmail.com",
+      "totalMinutesPlayed": 260,
+      "createdAt": "2025-10-19T12:34:39.429Z",
+      "updatedAt": "2025-10-19T12:34:51.468Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 71,
+    "userId": 39,
+    "gameId": 15,
+    "minutesPlayed": 70,
+    "createdAt": "2025-10-12T10:00:00.000Z",
+    "updatedAt": "2025-10-12T10:00:00.000Z",
+    "user": {
+      "id": 39,
+      "firstName": "Hannah",
+      "lastName": "Moore",
+      "email": "hannah@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=hannah%40gmail.com",
+      "totalMinutesPlayed": 210,
+      "createdAt": "2025-10-19T12:34:39.429Z",
+      "updatedAt": "2025-10-19T12:34:52.941Z"
+    },
+    "game": {
+      "id": 15,
+      "name": "Tetris",
+      "totalMinutesPlayed": 580,
+      "createdAt": "2025-10-19T12:34:39.625Z",
+      "updatedAt": "2025-10-19T12:34:52.545Z"
+    }
+  },
+  {
+    "id": 60,
+    "userId": 37,
+    "gameId": 14,
+    "minutesPlayed": 130,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 37,
+      "firstName": "Eve",
+      "lastName": "Davis",
+      "email": "eve@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=eve%40gmail.com",
+      "totalMinutesPlayed": 250,
+      "createdAt": "2025-10-19T12:34:39.449Z",
+      "updatedAt": "2025-10-19T12:34:47.990Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 70,
+    "userId": 39,
+    "gameId": 14,
+    "minutesPlayed": 90,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 39,
+      "firstName": "Hannah",
+      "lastName": "Moore",
+      "email": "hannah@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=hannah%40gmail.com",
+      "totalMinutesPlayed": 210,
+      "createdAt": "2025-10-19T12:34:39.429Z",
+      "updatedAt": "2025-10-19T12:34:52.941Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 51,
+    "userId": 34,
+    "gameId": 14,
+    "minutesPlayed": 350,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 34,
+      "firstName": "Shahid",
+      "lastName": "Manzoor",
+      "email": "shahid@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=shahid%40gmail.com",
+      "totalMinutesPlayed": 480,
+      "createdAt": "2025-10-19T12:34:39.423Z",
+      "updatedAt": "2025-10-19T12:34:43.469Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 67,
+    "userId": 35,
+    "gameId": 14,
+    "minutesPlayed": 120,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 35,
+      "firstName": "Grace",
+      "lastName": "Wilson",
+      "email": "grace@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=grace%40gmail.com",
+      "totalMinutesPlayed": 260,
+      "createdAt": "2025-10-19T12:34:39.429Z",
+      "updatedAt": "2025-10-19T12:34:51.468Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 47,
+    "userId": 33,
+    "gameId": 14,
+    "minutesPlayed": 140,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 33,
+      "firstName": "Kunnikar",
+      "lastName": "Boonbunlu",
+      "email": "kunnikar@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=kunnikar%40gmail.com",
+      "totalMinutesPlayed": 320,
+      "createdAt": "2025-10-19T12:34:39.397Z",
+      "updatedAt": "2025-10-19T12:34:41.025Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 55,
+    "userId": 36,
+    "gameId": 14,
+    "minutesPlayed": 60,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 36,
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "email": "charlie@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=charlie%40gmail.com",
+      "totalMinutesPlayed": 270,
+      "createdAt": "2025-10-19T12:34:39.444Z",
+      "updatedAt": "2025-10-19T12:34:45.446Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 64,
+    "userId": 38,
+    "gameId": 14,
+    "minutesPlayed": 80,
+    "createdAt": "2025-10-11T10:00:00.000Z",
+    "updatedAt": "2025-10-11T10:00:00.000Z",
+    "user": {
+      "id": 38,
+      "firstName": "Frank",
+      "lastName": "Miller",
+      "email": "frank@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=frank%40gmail.com",
+      "totalMinutesPlayed": 280,
+      "createdAt": "2025-10-19T12:34:39.430Z",
+      "updatedAt": "2025-10-19T12:34:50.008Z"
+    },
+    "game": {
+      "id": 14,
+      "name": "Sudoku",
+      "totalMinutesPlayed": 970,
+      "createdAt": "2025-10-19T12:34:39.623Z",
+      "updatedAt": "2025-10-19T12:34:52.042Z"
+    }
+  },
+  {
+    "id": 54,
+    "userId": 36,
+    "gameId": 16,
+    "minutesPlayed": 70,
+    "createdAt": "2025-10-10T10:00:00.000Z",
+    "updatedAt": "2025-10-10T10:00:00.000Z",
+    "user": {
+      "id": 36,
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "email": "charlie@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=charlie%40gmail.com",
+      "totalMinutesPlayed": 270,
+      "createdAt": "2025-10-19T12:34:39.444Z",
+      "updatedAt": "2025-10-19T12:34:45.446Z"
+    },
+    "game": {
+      "id": 16,
+      "name": "Chess",
+      "totalMinutesPlayed": 490,
+      "createdAt": "2025-10-19T12:34:39.627Z",
+      "updatedAt": "2025-10-19T12:34:48.594Z"
+    }
+  },
+  {
+    "id": 63,
+    "userId": 38,
+    "gameId": 16,
+    "minutesPlayed": 100,
+    "createdAt": "2025-10-10T10:00:00.000Z",
+    "updatedAt": "2025-10-10T10:00:00.000Z",
+    "user": {
+      "id": 38,
+      "firstName": "Frank",
+      "lastName": "Miller",
+      "email": "frank@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=frank%40gmail.com",
+      "totalMinutesPlayed": 280,
+      "createdAt": "2025-10-19T12:34:39.430Z",
+      "updatedAt": "2025-10-19T12:34:50.008Z"
+    },
+    "game": {
+      "id": 16,
+      "name": "Chess",
+      "totalMinutesPlayed": 490,
+      "createdAt": "2025-10-19T12:34:39.627Z",
+      "updatedAt": "2025-10-19T12:34:48.594Z"
+    }
+  },
+  {
+    "id": 58,
+    "userId": 40,
+    "gameId": 16,
+    "minutesPlayed": 110,
+    "createdAt": "2025-10-10T10:00:00.000Z",
+    "updatedAt": "2025-10-10T10:00:00.000Z",
+    "user": {
+      "id": 40,
+      "firstName": "David",
+      "lastName": "Williams",
+      "email": "david@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=david%40gmail.com",
+      "totalMinutesPlayed": 180,
+      "createdAt": "2025-10-19T12:34:39.531Z",
+      "updatedAt": "2025-10-19T12:34:46.506Z"
+    },
+    "game": {
+      "id": 16,
+      "name": "Chess",
+      "totalMinutesPlayed": 490,
+      "createdAt": "2025-10-19T12:34:39.627Z",
+      "updatedAt": "2025-10-19T12:34:48.594Z"
+    }
+  },
+  {
+    "id": 46,
+    "userId": 33,
+    "gameId": 16,
+    "minutesPlayed": 120,
+    "createdAt": "2025-10-10T10:00:00.000Z",
+    "updatedAt": "2025-10-10T10:00:00.000Z",
+    "user": {
+      "id": 33,
+      "firstName": "Kunnikar",
+      "lastName": "Boonbunlu",
+      "email": "kunnikar@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=kunnikar%40gmail.com",
+      "totalMinutesPlayed": 320,
+      "createdAt": "2025-10-19T12:34:39.397Z",
+      "updatedAt": "2025-10-19T12:34:41.025Z"
+    },
+    "game": {
+      "id": 16,
+      "name": "Chess",
+      "totalMinutesPlayed": 490,
+      "createdAt": "2025-10-19T12:34:39.627Z",
+      "updatedAt": "2025-10-19T12:34:48.594Z"
+    }
+  },
+  {
+    "id": 49,
+    "userId": 41,
+    "gameId": 16,
+    "minutesPlayed": 90,
+    "createdAt": "2025-10-10T10:00:00.000Z",
+    "updatedAt": "2025-10-10T10:00:00.000Z",
+    "user": {
+      "id": 41,
+      "firstName": "Israt",
+      "lastName": "Erin",
+      "email": "israt@gmail.com",
+      "profileImage": "https://api.dicebear.com/9.x/lorelei/svg?seed=israt%40gmail.com",
+      "totalMinutesPlayed": 335,
+      "createdAt": "2025-10-19T12:34:39.536Z",
+      "updatedAt": "2025-10-19T12:34:42.002Z"
+    },
+    "game": {
+      "id": 16,
+      "name": "Chess",
+      "totalMinutesPlayed": 490,
+      "createdAt": "2025-10-19T12:34:39.627Z",
+      "updatedAt": "2025-10-19T12:34:48.594Z"
+    }
+  }
+]

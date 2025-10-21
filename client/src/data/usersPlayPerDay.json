@@ -1,0 +1,47 @@
+[
+  {
+    "day": "Monday",
+    "user": "David Williams",
+    "totalMinutes": 180
+  },
+  {
+    "day": "Tuesday",
+    "user": "Eve Davis",
+    "totalMinutes": 250
+  },
+  {
+    "day": "Wednesday",
+    "user": "Shahid Manzoor",
+    "totalMinutes": 480
+  },
+  {
+    "day": "Thursday",
+    "user": "Grace Wilson",
+    "totalMinutes": 260
+  },
+  {
+    "day": "Friday",
+    "user": "Hannah Moore",
+    "totalMinutes": 210
+  },
+  {
+    "day": "Saturday",
+    "user": "Charlie Brown",
+    "totalMinutes": 270
+  },
+  {
+    "day": "Sunday",
+    "user": "Israt Erin",
+    "totalMinutes": 335
+  },
+  {
+    "day": "Monday",
+    "user": "Frank Miller",
+    "totalMinutes": 280
+  },
+  {
+    "day": "Monday",
+    "user": "Kunnikar Boonbunlu",
+    "totalMinutes": 320
+  }
+]
