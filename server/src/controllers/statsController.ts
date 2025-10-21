@@ -2,7 +2,6 @@ import type { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-
 // 🧍 Total play time per user
 export const userTotals = async (req: Request, res: Response) => {
   try {
@@ -68,7 +67,7 @@ export const userPerDay = async (req: Request, res: Response) => {
     });
     const userMap: Record<number, string> = {};
     users.forEach((u) => {
-      userMap[u.id] = `${u.firstName} ${u.lastName}`;
+      userMap[u.id] = `${u.firstName}`;
     });
 
     // Group by user name playtime per day
