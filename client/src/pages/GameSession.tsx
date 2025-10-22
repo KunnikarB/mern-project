@@ -44,7 +44,7 @@ export default function GameSession() {
 
         // Calculate start and end time
         const startedAt = new Date(now.getTime() - seconds * 1000);
-        const endedAt = now;
+        const endedAt = new Date(startedAt.getTime() + seconds * 60000);
 
         // ✅ Store the API response
         const res = await api.post(`/sessions`, {
