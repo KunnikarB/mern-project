@@ -1,10 +1,17 @@
 # 🎮 Game Tracker
 
-A full-stack web application to tracks users' game play sessions, displays statistics, and visualizes data with charts. Users can play games, save their sessions, and view total minutes played per game and manage playtime dynamically. 
-- Built with
-  - **React**, **TypeScript**, **Express**, **Prisma**, and **PostgreSQL**.  
-
+## A full-stack web application to tracks users' game play sessions, displays statistics, and visualizes data with charts. Users can play games, save their sessions, and view total minutes played per game and manage playtime dynamically. 
+## ⚒️ Built with
+  ### **React**, **TypeScript**, **Express**, **Prisma**, and **PostgreSQL**.  
+   
+### 🏠 Home page 
 <img width="1610" height="941" alt="Screenshot 2025-10-21 at 15 19 40" src="https://github.com/user-attachments/assets/eaaafc85-64ee-4a8e-9ff8-2045f2ab566f" />
+
+### 👩🏻‍🎤 User Page 
+<img width="1611" height="965" alt="Screenshot 2025-10-21 at 15 20 00" src="https://github.com/user-attachments/assets/6bd889e5-4f21-495a-9eac-61507d0d7aae" />
+
+###  📊 Game Statistic
+<img width="1610" height="970" alt="Screenshot 2025-10-21 at 15 20 22" src="https://github.com/user-attachments/assets/510425a2-7b1c-44c3-b4d3-fbd00f451350" />
 
 ---
 
@@ -32,7 +39,7 @@ A full-stack web application to tracks users' game play sessions, displays stati
 - **Responsive UI**
   - Works on desktop and mobile devices.
 
-<img width="1611" height="965" alt="Screenshot 2025-10-21 at 15 20 00" src="https://github.com/user-attachments/assets/6bd889e5-4f21-495a-9eac-61507d0d7aae" />
+
 ---
 
 ## 🛠 Tech Stack
