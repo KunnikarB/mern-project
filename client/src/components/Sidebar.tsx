@@ -47,6 +47,13 @@ export default function Sidebar() {
               </NavLink>
 
               <NavLink
+                to="/statistics"
+                className={({ isActive }) => linkClass(isActive)}
+              >
+                📊 Game Statistics
+              </NavLink>
+
+              <NavLink
                 to={`/profile/${currentUser.id}`}
                 className={({ isActive }) => linkClass(isActive)}
               >
