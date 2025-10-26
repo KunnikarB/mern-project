@@ -5,13 +5,20 @@
   ### **React**, **TypeScript**, **Express**, **Prisma**, and **PostgreSQL**.  
    
 ### 🏠 Home page 
-<img width="1610" height="941" alt="Screenshot 2025-10-21 at 15 19 40" src="https://github.com/user-attachments/assets/eaaafc85-64ee-4a8e-9ff8-2045f2ab566f" />
+<img width="1920" height="983" alt="Home" src="https://github.com/user-attachments/assets/feedd787-5e0c-4e1e-a049-05a2b6cd5978" />
+
 
 ### 👩🏻‍🎤 User Page 
-<img width="1611" height="965" alt="Screenshot 2025-10-21 at 15 20 00" src="https://github.com/user-attachments/assets/6bd889e5-4f21-495a-9eac-61507d0d7aae" />
 
-###  📊 Game Statistic
-<img width="1610" height="970" alt="Screenshot 2025-10-21 at 15 20 22" src="https://github.com/user-attachments/assets/510425a2-7b1c-44c3-b4d3-fbd00f451350" />
+<img width="1919" height="962" alt="Users" src="https://github.com/user-attachments/assets/5061edc5-f322-404f-abce-58216ed89f2b" />
+
+###  📊 Play Sessions Statistic
+
+<img width="1920" height="991" alt="PlaySession" src="https://github.com/user-attachments/assets/e4c6f474-3e64-420c-b418-d40e5ebb9df1" />
+
+###  📊 Games Statistic
+<img width="1911" height="984" alt="Games Statistics" src="https://github.com/user-attachments/assets/6b2ab58d-3b89-4d77-b6f9-3a62f64a8fb6" />
+
 
 ---
 
