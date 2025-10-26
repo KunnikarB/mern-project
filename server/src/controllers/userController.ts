@@ -1,20 +1,23 @@
 import type { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-import { userSchema, userUpdateSchema } from '../validators/userSchema.ts'; // keep .js for ESM
+import { PrismaClient, Prisma } from '@prisma/client';
+import { userSchema, userUpdateSchema } from '../validators/userSchema.ts';
 
 const prisma = new PrismaClient();
 
-// GET /users
+//  Get all users
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      orderBy: { id: 'asc' },
+    });
     res.json(users);
   } catch (error) {
+    console.error('Error fetching users:', error);
     res.status(500).json({ error: 'Failed to fetch users' });
   }
 };
 
-// GET /users/:id
+// Get user by ID
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -26,20 +29,25 @@ export const getUserById = async (req: Request, res: Response) => {
     }
     res.json(user);
   } catch (error) {
+    console.error('Error fetching user by id:', error);
     res.status(500).json({ error: 'Failed to fetch user' });
   }
 };
 
-// POST /users
+// Create a new user
 export const createUser = async (req: Request, res: Response) => {
-  console.log('Incoming body:', req.body); // <--- add this
   try {
     const validated = userSchema.parse(req.body);
+    // Generate a profile image URL
     const profileImage = `https://api.dicebear.com/9.x/lorelei/svg?seed=${encodeURIComponent(
       validated.email
     )}`;
     const user = await prisma.user.create({
-      data: { ...validated, profileImage },
+      data: {
+        ...validated,
+        profileImage,
+        totalMinutesPlayed: validated.totalMinutesPlayed ?? 0,
+      },
     });
     res.status(201).json(user);
   } catch (error) {
@@ -50,29 +58,49 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
-
-// PUT /users/:id
+// Update user by ID
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const validated = userUpdateSchema.parse(req.body);
+
+    const updateData: Prisma.UserUpdateInput = {};
+    if (validated.firstName !== undefined)
+      updateData.firstName = validated.firstName;
+    if (validated.lastName !== undefined)
+      updateData.lastName = validated.lastName;
+    if (validated.email !== undefined) updateData.email = validated.email;
+    if (validated.totalMinutesPlayed !== undefined)
+      updateData.totalMinutesPlayed = validated.totalMinutesPlayed;
+
     const user = await prisma.user.update({
       where: { id: Number(id) },
-      data: validated,
+      data: updateData,
     });
     res.json(user);
   } catch (error) {
+    console.error('Error updating user:', error);
     res.status(400).json({ error });
   }
 };
 
-// DELETE /users/:id
+// Delete user by ID
 export const deleteUser = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    await prisma.user.delete({ where: { id: Number(id) } });
-    res.status(204).json({ message: 'User deleted successfully' });
+    await prisma.user.delete({
+      where: { id: Number(id) },
+    });
+    res.status(200).json({ message: 'User deleted successfully' });
   } catch (error) {
-    res.status(400).json({ error });
+    console.error('Error deleting user:', error);
+
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === 'P2025'
+    ) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(500).json({ error: 'Failed to delete user' });
   }
 };

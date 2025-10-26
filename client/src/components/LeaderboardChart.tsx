@@ -13,6 +13,20 @@ type LeaderboardEntry = {
   timePlayed: string; // e.g. "1 hours 30 minutes"
 };
 
+// 🎨 Custom color palette
+const chartColors = [
+  '#f15bb5',
+  '#00A6F4',
+  '#8457F6',
+  '#00bb72',
+  '#fee440',
+  '#ff6f59',
+  '#4361ee',
+  '#48cae4',
+  '#ff9f1c',
+  '#80ed99',
+];
+
 // Helper: convert "X hours Y minutes" to total minutes
 const parseTimePlayed = (timeStr: string): number => {
   const hoursMatch = timeStr.match(/(\d+)\s*hours?/);
@@ -23,16 +37,18 @@ const parseTimePlayed = (timeStr: string): number => {
 };
 
 const LeaderboardChart = () => {
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
+    []
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await api.get("/stats/leaderboard");
+        const response = await api.get('/stats/leaderboard');
         setLeaderboardData(response.data);
       } catch (error) {
-        console.error("Error fetching leaderboard:", error);
+        console.error('Error fetching leaderboard:', error);
       } finally {
         setLoading(false);
       }
@@ -44,24 +60,18 @@ const LeaderboardChart = () => {
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
 
   const labels = leaderboardData.map((entry) => entry.user);
-  const timeInMinutes = leaderboardData.map((entry) => parseTimePlayed(entry.timePlayed));
-
-  // Pink-themed colors
-  const pinkShades = [
-    "rgba(255, 182, 193, 0.8)",
-    "rgba(255, 105, 180, 0.8)",
-    "rgba(255, 20, 147, 0.8)",
-    "rgba(255, 192, 203, 0.8)",
-  ];
+  const timeInMinutes = leaderboardData.map((entry) =>
+    parseTimePlayed(entry.timePlayed)
+  );
 
   const data = {
     labels,
     datasets: [
       {
-        label: "Time Played (minutes)",
+        label: 'Time Played (minutes)',
         data: timeInMinutes,
-        backgroundColor: pinkShades.slice(0, labels.length),
-        borderColor: "#fff",
+        backgroundColor: chartColors.slice(0, labels.length),
+        borderColor: '#fff',
         borderWidth: 2,
       },
     ],
@@ -71,14 +81,14 @@ const LeaderboardChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "right" as const,
-        labels: { color: "#db2777", font: { size: 12 } },
+        position: 'right' as const,
+        labels: { color: '#db2777', font: { size: 12 } },
       },
       title: {
         display: true,
-        text: "Leaderboard - Time Played per User",
-        color: "#ec4899",
-        font: { size: 18, weight: "bold" as const },
+        text: 'Leaderboard - Time Played per User',
+        color: '#ec4899',
+        font: { size: 18, weight: 'bold' as const },
       },
     },
   };
@@ -91,4 +101,5 @@ const LeaderboardChart = () => {
     </div>
   );
 };
+
 export default LeaderboardChart;

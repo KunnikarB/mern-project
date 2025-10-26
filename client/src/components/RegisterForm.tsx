@@ -87,6 +87,8 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
         onChange={(e) => setEmail(e.target.value)}
         className="input p-2 text-gray-200"
         required
+        type="email"
+
       />
       <input
         type="file"
@@ -96,7 +98,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
       />
       <button
         type="submit"
-        className="bg-sky-500 text-white rounded-xl px-4 py-2 hover:bg-sky-600 cursor-pointer"
+        className="bg-violet-500 text-white rounded-xl px-4 py-2 hover:bg-violet-600 cursor-pointer"
       >
         Add User
       </button>
