@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
@@ -6,9 +7,6 @@ import Users from './pages/Users';
 import Profile from './pages/Profile';
 import Games from './pages/Games';
 import GameSession from './pages/GameSession';
-import GameStatistics from './pages/GameStatistics';
-import { Toaster } from 'react-hot-toast';
-
 
 export default function App() {
   return (
@@ -25,24 +23,15 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/profile/:userId" element={<Profile />} />
             <Route path="/games/:userId" element={<Games />} />
             <Route
               path="/games/session/:gameId/:userId"
               element={<GameSession />}
             />
-            <Route path="/profile/:userId" element={<Profile />} />
-            <Route path="/statistics" element={<GameStatistics />} />
           </Routes>
         </main>
       </div>
-
-      <footer className="w-full bg-white dark:bg-gray-800 shadow-lg py-4 mt-auto">
-        <div className="container mx-auto text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} MyApp. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

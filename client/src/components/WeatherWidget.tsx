@@ -35,11 +35,11 @@ export default function Weather() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter city"
-          className="border p-2 rounded flex-1"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-400 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400"
         />
         <button
           onClick={handleSearch}
-          className="bg-pink-500 text-white px-4 rounded hover:bg-pink-600"
+          className="bg-pink-400 text-white px-4 rounded hover:bg-pink-500 cursor-pointer"
         >
           Get Weather
         </button>
