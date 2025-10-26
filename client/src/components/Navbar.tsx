@@ -3,18 +3,18 @@ import SearchBar from './SearchBar';
 
 export default function Navbar() {
   return (
-    <nav className="w-full bg-white dark:bg-pink-400 shadow-lg py-4 px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      {/* 1️⃣ Weather Widget — hidden above title on mobile */}
+    <nav className="w-full bg-black  shadow-lg py-4 px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Weather Widget */}
       <div className="order-2 md:order-1 w-full md:w-auto flex justify-center md:justify-start">
         <WeatherWidget />
       </div>
 
-      {/* 2️⃣ App Title — first on mobile, centered on desktop */}
-      <h1 className="order-1 md:order-2 text-2xl font-bold text-pinkyDark dark:text-white font-[Doto] text-center w-full md:w-auto">
+      {/* App Title */}
+      <h1 className="order-1 md:order-2 text-4xl font-bold text-pinkyDark text-white font-[Doto] text-center w-full md:w-auto">
         🎮 Game Tracker
       </h1>
 
-      {/* 3️⃣ Search Bar — last on both mobile and desktop */}
+      {/* Search Bar */}
       <div className="order-3 w-full md:w-auto flex justify-center md:justify-end">
         <SearchBar />
       </div>

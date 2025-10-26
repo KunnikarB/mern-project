@@ -4,14 +4,14 @@ import { playSessionSchema } from '../validators/playSessionSchema.ts';
 
 const prisma = new PrismaClient();
 
-// 🧠 Helper: normalize date to YYYY-MM-DD for daily stats
+// Normalize date to UTC midnight
 const normalizeDate = (date: Date) => {
   const d = new Date(date);
   d.setUTCHours(0, 0, 0, 0);
   return d;
 };
 
-// ✅ CREATE play session
+//CREATE play session
 export const createPlaySession = async (req: Request, res: Response) => {
   try {
     const validated = playSessionSchema.parse(req.body);
@@ -37,12 +37,12 @@ export const createPlaySession = async (req: Request, res: Response) => {
     // Update user & game totals
     await prisma.user.update({
       where: { id: userId },
-      data: ({ totalMinutesPlayed: { increment: minutesPlayed } } as any),
+      data: { totalMinutesPlayed: { increment: minutesPlayed } } as any,
     });
 
     await prisma.game.update({
       where: { id: gameId },
-      data: ({ totalMinutesPlayed: { increment: minutesPlayed } } as any),
+      data: { totalMinutesPlayed: { increment: minutesPlayed } } as any,
     });
 
     // Update daily stats (UserStats)
@@ -73,7 +73,7 @@ export const createPlaySession = async (req: Request, res: Response) => {
   }
 };
 
-// ✅ GET all sessions
+//GET all sessions
 export const getAllPlaySessions = async (req: Request, res: Response) => {
   try {
     const sessions = await prisma.playSession.findMany({
@@ -89,10 +89,10 @@ export const getAllPlaySessions = async (req: Request, res: Response) => {
   }
 };
 
-// ✅ GET all play sessions user by userId
+//GET all play sessions user by userId
 export const getUserStats = async (req: Request, res: Response) => {
   const userIdParam = req.params.userId;
-  const userId = parseInt(userIdParam, 10);
+  const userId = parseInt(userIdParam ?? '', 10);
 
   if (Number.isNaN(userId)) {
     return res.status(400).json({ error: 'Invalid userId' });
@@ -113,10 +113,10 @@ export const getUserStats = async (req: Request, res: Response) => {
   }
 };
 
-// ✅ DELETE play session by id
+//DELETE play session by id
 export const deletePlaySession = async (req: Request, res: Response) => {
   const sessionIdParam = req.params.id;
-  const sessionId = parseInt(sessionIdParam, 10);
+  const sessionId = parseInt(sessionIdParam ?? '', 10);
 
   if (Number.isNaN(sessionId)) {
     return res.status(400).json({ error: 'Invalid session id' });
@@ -166,7 +166,9 @@ export const deletePlaySession = async (req: Request, res: Response) => {
     console.error(error);
     return res.status(500).json({
       error:
-        error instanceof Error ? error.message : 'Failed to delete play session',
+        error instanceof Error
+          ? error.message
+          : 'Failed to delete play session',
     });
   }
 };

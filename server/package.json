@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^6.17.1",
+    "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@types/cors": "^2.8.19",
     "bcrypt": "^6.0.0",
@@ -32,7 +32,7 @@
     "eslint": "^9.37.0",
     "install": "^0.13.0",
     "nodemon": "^3.1.10",
-    "prisma": "^6.17.1",
+    "prisma": "^6.18.0",
     "ts-node": "^10.9.2"
   }
 }

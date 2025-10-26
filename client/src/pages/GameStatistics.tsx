@@ -1,12 +1,25 @@
-
+import { useState, useEffect } from 'react';
 import 'chart.js/auto';
 import LeaderboardChart from '../components/LeaderboardChart';
-import BarChart from '../components/BarChart';
+import BarChartUserTotals from '../components/BarChartUserTotals';
 import LineChart from '../components/LineChart';
-import Leaderboard from '../components/Leaderboard';
-
+import Leaderboard from '../components/Leaderboard'
 
 export default function GameStatistics() {
+  const [loadingBar, setLoadingBar] = useState(true);
+  const [loadingLine, setLoadingLine] = useState(true);
+  const [loadingDoughnut, setLoadingDoughnut] = useState(true);
+
+  // Simulate data fetch delays for demonstration (replace with actual API calls if needed)
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setLoadingBar(false), 500),
+      setTimeout(() => setLoadingLine(false), 700),
+      setTimeout(() => setLoadingDoughnut(false), 600),
+    ];
+
+    return () => timers.forEach((t) => clearTimeout(t));
+  }, []);
 
   return (
     <div className="p-6">
@@ -16,18 +29,30 @@ export default function GameStatistics() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Bar Chart */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80">
-          <BarChart />
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80 flex items-center justify-center">
+          {loadingBar ? (
+            <p className="text-gray-500">Loading Bar Chart...</p>
+          ) : (
+            <BarChartUserTotals />
+          )}
         </div>
 
-        {/* Stacked Line Chart: User Playtime Per Day */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80">
-          <LineChart />
+        {/* Stacked Line Chart */}
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80 flex items-center justify-center">
+          {loadingLine ? (
+            <p className="text-gray-500">Loading Line Chart...</p>
+          ) : (
+            <LineChart />
+          )}
         </div>
 
         {/* Doughnut Chart */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80">
-          <LeaderboardChart />
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md h-80 flex items-center justify-center">
+          {loadingDoughnut ? (
+            <p className="text-gray-500">Loading Doughnut Chart...</p>
+          ) : (
+            <LeaderboardChart />
+          )}
         </div>
 
         {/* Leaderboard Table */}
