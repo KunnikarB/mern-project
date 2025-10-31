@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Games from './pages/Games';
 import GameSession from './pages/GameSession';
 import GameStatistics from './pages/GameStatistics';
+import Charts from './pages/Charts';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
               
             />
             <Route path="/statistics" element={<GameStatistics />} />
+            <Route path="/charts" element={<Charts />} />
           </Routes>
         </main>
       </div>

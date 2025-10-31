@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 
-dotenv.config;
+dotenv.config();
 const prisma = new PrismaClient();
 
 const seed = async () => {
@@ -14,7 +14,7 @@ const seed = async () => {
     await prisma.game.deleteMany();
     await prisma.user.deleteMany();
     console.log('🧹 Cleared all tables');
-    
+
     // 👥 Create users
     const usersData = [
       {
@@ -22,46 +22,14 @@ const seed = async () => {
         lastName: 'Boonbunlu',
         email: 'kunnikar@gmail.com',
       },
-      {
-        firstName: 'Israt',
-        lastName: 'Erin',
-        email: 'israt@gmail.com',
-      },
-      {
-        firstName: 'Shahid',
-        lastName: 'Manzoor',
-        email: 'shahid@gmail.com',
-      },
-      {
-        firstName: 'Charlie',
-        lastName: 'Brown',
-        email: 'charlie@gmail.com',
-      },
-      {
-        firstName: 'David',
-        lastName: 'Williams',
-        email: 'david@gmail.com',
-      },
-      {
-        firstName: 'Eve',
-        lastName: 'Davis',
-        email: 'eve@gmail.com',
-      },
-      {
-        firstName: 'Frank',
-        lastName: 'Miller',
-        email: 'frank@gmail.com',
-      },
-      {
-        firstName: 'Grace',
-        lastName: 'Wilson',
-        email: 'grace@gmail.com',
-      },
-      {
-        firstName: 'Hannah',
-        lastName: 'Moore',
-        email: 'hannah@gmail.com',
-      },
+      { firstName: 'Israt', lastName: 'Erin', email: 'israt@gmail.com' },
+      { firstName: 'Shahid', lastName: 'Manzoor', email: 'shahid@gmail.com' },
+      { firstName: 'Charlie', lastName: 'Brown', email: 'charlie@gmail.com' },
+      { firstName: 'David', lastName: 'Williams', email: 'david@gmail.com' },
+      { firstName: 'Eve', lastName: 'Davis', email: 'eve@gmail.com' },
+      { firstName: 'Frank', lastName: 'Miller', email: 'frank@gmail.com' },
+      { firstName: 'Grace', lastName: 'Wilson', email: 'grace@gmail.com' },
+      { firstName: 'Hannah', lastName: 'Moore', email: 'hannah@gmail.com' },
     ];
 
     const users = await Promise.all(
@@ -85,233 +53,74 @@ const seed = async () => {
       { name: 'Tetris' },
       { name: 'Tic-Tac-Toe' },
     ];
+
     const games = await Promise.all(
       gamesData.map((g) =>
         prisma.game.create({ data: { ...g, totalMinutesPlayed: 0 } })
       )
     );
 
-    // 🎮 Create play sessions
-    const sessions = [
-      // Kunnikar
-      {
-        userEmail: 'kunnikar@gmail.com',
-        gameName: 'Chess',
-        minutesPlayed: 120,
-        createdAt: new Date('2025-10-10T10:00:00Z'),
-      },
-      {
-        userEmail: 'kunnikar@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 140,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'kunnikar@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 60,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
+    // 📅 Generate daily play sessions (Oct 23–30)
+    const startDate = new Date('2025-10-23T00:00:00Z');
+    const endDate = new Date('2025-10-30T00:00:00Z');
+    const dayMs = 24 * 60 * 60 * 1000;
 
-      // Israt
-      {
-        userEmail: 'israt@gmail.com',
-        gameName: 'Chess',
-        minutesPlayed: 90,
-        createdAt: new Date('2025-10-10T10:00:00Z'),
-      },
-      {
-        userEmail: 'israt@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 245,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
+    for (let d = startDate; d <= endDate; d = new Date(d.getTime() + dayMs)) {
+      for (const user of users) {
+        // Each user plays 2–3 games per day
+        const gamesToday = [...games]
+          .sort(() => 0.5 - Math.random())
+          .slice(0, Math.floor(Math.random() * 2) + 2);
 
-      // Shahid
-      {
-        userEmail: 'shahid@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 350,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'shahid@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 80,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      {
-        userEmail: 'shahid@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 50,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
-      // Charlie
-      {
-        userEmail: 'charlie@gmail.com',
-        gameName: 'Chess',
-        minutesPlayed: 70,
-        createdAt: new Date('2025-10-10T10:00:00Z'),
-      },
-      {
-        userEmail: 'charlie@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 60,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'charlie@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 90,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      {
-        userEmail: 'charlie@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 50,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
-      // David
-      {
-        userEmail: 'david@gmail.com',
-        gameName: 'Chess',
-        minutesPlayed: 110,
-        createdAt: new Date('2025-10-10T10:00:00Z'),
-      },
-      {
-        userEmail: 'david@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 70,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      // Eve
-      {
-        userEmail: 'eve@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 130,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'eve@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 70,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      {
-        userEmail: 'eve@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 50,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
-      // Frank
-      {
-        userEmail: 'frank@gmail.com',
-        gameName: 'Chess',
-        minutesPlayed: 100,
-        createdAt: new Date('2025-10-10T10:00:00Z'),
-      },
-      {
-        userEmail: 'frank@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 80,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'frank@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 60,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      {
-        userEmail: 'frank@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 40,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
-      // Grace
-      {
-        userEmail: 'grace@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 120,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'grace@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 80,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      {
-        userEmail: 'grace@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 60,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
-      // Hannah
-      {
-        userEmail: 'hannah@gmail.com',
-        gameName: 'Sudoku',
-        minutesPlayed: 90,
-        createdAt: new Date('2025-10-11T10:00:00Z'),
-      },
-      {
-        userEmail: 'hannah@gmail.com',
-        gameName: 'Tetris',
-        minutesPlayed: 70,
-        createdAt: new Date('2025-10-12T10:00:00Z'),
-      },
-      {
-        userEmail: 'hannah@gmail.com',
-        gameName: 'Tic-Tac-Toe',
-        minutesPlayed: 50,
-        createdAt: new Date('2025-10-13T10:00:00Z'),
-      },
-    ];
+        let totalMinutesToday = 0;
 
-    for (const s of sessions) {
-      const user = await prisma.user.findUnique({
-        where: { email: s.userEmail },
-      });
-      const game = await prisma.game.findFirst({ where: { name: s.gameName } });
+        for (const game of gamesToday) {
+          const minutesPlayed = Math.floor(Math.random() * 150) + 30; // 30–180 mins
+          totalMinutesToday += minutesPlayed;
 
-      if (!user || !game) continue;
+          const endedAt = new Date(d);
+          endedAt.setUTCHours(10 + Math.floor(Math.random() * 8), 0, 0, 0); // 10AM–6PM range
+          const startedAt = new Date(endedAt.getTime() - minutesPlayed * 60000);
 
-      // ➕ Create play session
-      await prisma.playSession.create({
-        data: {
-          userId: user.id,
-          gameId: game.id,
-          minutesPlayed: s.minutesPlayed,
-          createdAt: s.createdAt,
-          updatedAt: s.createdAt,
-        },
-      });
+          // 🎮 Create play session
+          await prisma.playSession.create({
+            data: {
+              userId: user.id,
+              gameId: game.id,
+              minutesPlayed,
+              startedAt,
+              endedAt,
+              createdAt: endedAt,
+              updatedAt: endedAt,
+            } as any,
+          });
 
-      // 🔁 Update user total
-      await prisma.user.update({
-        where: { id: user.id },
-        data: { totalMinutesPlayed: { increment: s.minutesPlayed } },
-      });
+          // 🔁 Update totals
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { totalMinutesPlayed: { increment: minutesPlayed } },
+          });
 
-      // 🔁 Update game total
-      await prisma.game.update({
-        where: { id: game.id },
-        data: { totalMinutesPlayed: { increment: s.minutesPlayed } },
-      });
+          await prisma.game.update({
+            where: { id: game.id },
+            data: { totalMinutesPlayed: { increment: minutesPlayed } },
+          });
+        }
 
-      // 📊 Update or create UserStats for the day
-      const dayOnly = new Date(s.createdAt);
-      dayOnly.setUTCHours(0, 0, 0, 0);
+        // 📊 Update daily user stats
+        const dayOnly = new Date(d);
+        dayOnly.setUTCHours(0, 0, 0, 0);
 
-      await prisma.userStats.upsert({
-        where: { userId_date: { userId: user.id, date: dayOnly } },
-        update: { minutesPlayed: { increment: s.minutesPlayed } },
-        create: {
-          userId: user.id,
-          date: dayOnly,
-          minutesPlayed: s.minutesPlayed,
-        },
-      });
+        await prisma.userStats.upsert({
+          where: { userId_date: { userId: user.id, date: dayOnly } },
+          update: { minutesPlayed: { increment: totalMinutesToday } },
+          create: {
+            userId: user.id,
+            date: dayOnly,
+            minutesPlayed: totalMinutesToday,
+          },
+        });
+      }
     }
 
     console.log('✅ Seed completed successfully!');

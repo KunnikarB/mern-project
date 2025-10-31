@@ -128,7 +128,7 @@ export default function Profile() {
         <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md flex flex-col items-center justify-center">
           {combinedSessions.length > 0 ? (
             <>
-              <h2 className="text-pink-500 text-7xl mb-2">{totalMinutes}</h2>
+              <h2 className="text-pink-500 text-7xl mb-2">{totalMinutes} </h2>
               <p className="text-sm dark:text-gray-400 mb-6">
                 Total minutes played
               </p>
@@ -141,13 +141,13 @@ export default function Profile() {
           <div className="flex justify-center gap-4">
             <button
               onClick={() => navigate('/users')}
-              className="bg-pink-400 text-white px-4 py-2 rounded-2xl hover:bg-pink-500 cursor-pointer"
+              className="bg-pink-400 text-white px-4 py-2 rounded-2xl hover:bg-pink-500"
             >
               View Users
             </button>
             <button
               onClick={() => navigate(`/games/${userId}`)}
-              className="bg-violet-500 text-white px-4 py-2 rounded-2xl hover:bg-violet-600 cursor-pointer"
+              className="bg-violet-500 text-white px-4 py-2 rounded-2xl hover:bg-violet-600"
             >
               Go to Games
             </button>

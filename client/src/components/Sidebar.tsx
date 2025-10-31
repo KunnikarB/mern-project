@@ -26,7 +26,7 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-4">
           {/* Always visible links */}
           <NavLink to="/" className={({ isActive }) => linkClass(isActive)}>
-            🏠 Home
+            🏡 Home
           </NavLink>
 
           <NavLink
@@ -51,6 +51,13 @@ export default function Sidebar() {
                 className={({ isActive }) => linkClass(isActive)}
               >
                 📊 Game Statistics
+              </NavLink>
+
+              <NavLink
+                to="/Charts"
+                className={({ isActive }) => linkClass(isActive)}
+              >
+                📈 Charts
               </NavLink>
 
               <NavLink
